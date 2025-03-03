@@ -19,8 +19,9 @@ const formatDate = (timestamp, language) => {
   return `${year}-${month}-${day} ${hours}:${minutes}`;
 };
 
-export default function TopicCard({ topic }) {
-  const { language } = useLanguage();
+export default function TopicCard({ topic, language: propLanguage, href }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = propLanguage || contextLanguage;
 
   // Function to handle image URL encoding
   const getImageUrl = (url) => {
@@ -36,8 +37,8 @@ export default function TopicCard({ topic }) {
   // Get title based on language
   const getTitle = () => {
     if (!topic) return '';
-    if (language === LANGUAGES.CN && topic.titleCN) {
-      return topic.titleCN;
+    if (language === LANGUAGES.ZH_TW && topic.titleZh) {
+      return topic.titleZh;
     }
     return topic.title || '';
   };
@@ -45,8 +46,8 @@ export default function TopicCard({ topic }) {
   // Get summary based on language
   const getSummary = () => {
     if (!topic) return '';
-    if (language === LANGUAGES.CN && topic.summaryCN) {
-      return topic.summaryCN;
+    if (language === LANGUAGES.ZH_TW && topic.summaryZh) {
+      return topic.summaryZh;
     }
     return topic.summary || '';
   };
@@ -55,8 +56,11 @@ export default function TopicCard({ topic }) {
     return null;
   }
 
+  // Use the provided href or fallback to the default
+  const linkHref = href || `/topic/${topic.topicID}`;
+
   return (
-    <Link href={`/topic/${topic.topicID}`} className="block h-full">
+    <Link href={linkHref} className="block h-full">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
         {topic.image && (
           <div className="relative w-full h-48">

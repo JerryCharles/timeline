@@ -5,16 +5,16 @@ import { createContext, useContext, useState, useEffect } from 'react';
 // Define available languages
 export const LANGUAGES = {
   EN: 'en',
-  CN: 'cn'
+  ZH_TW: 'zh-TW'  // Changed from CN to ZH_TW with proper locale code
 };
 
 // Create the context
 const LanguageContext = createContext();
 
 // Create a provider component
-export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(LANGUAGES.EN);
-  const [hasUserChangedLanguage, setHasUserChangedLanguage] = useState(false);
+export function LanguageProvider({ children, initialLanguage }) {
+  const [language, setLanguage] = useState(initialLanguage || LANGUAGES.EN);
+  const [hasUserChangedLanguage, setHasUserChangedLanguage] = useState(!!initialLanguage);
 
   // Initialize language from localStorage or detect browser language
   useEffect(() => {
@@ -42,9 +42,9 @@ export function LanguageProvider({ children }) {
       console.log('Detected browser language:', browserLang);
       
       // Check if it's Chinese
-      if (browserLang && (browserLang.toLowerCase().startsWith('zh') || browserLang.toLowerCase() === 'cn')) {
-        console.log('Setting language to Chinese based on browser language');
-        setLanguage(LANGUAGES.CN);
+      if (browserLang && (browserLang.toLowerCase().startsWith('zh'))) {
+        console.log('Setting language to Traditional Chinese based on browser language');
+        setLanguage(LANGUAGES.ZH_TW);
       } else {
         // Default to English for all other languages
         console.log('Setting language to English based on browser language');
@@ -52,36 +52,43 @@ export function LanguageProvider({ children }) {
       }
     } catch (error) {
       console.error('Error detecting browser language:', error);
-      // Default to English if there's an error
+      // Default to English in case of error
       setLanguage(LANGUAGES.EN);
     }
   };
 
   // Toggle between languages
   const toggleLanguage = () => {
-    const newLanguage = language === LANGUAGES.EN ? LANGUAGES.CN : LANGUAGES.EN;
+    const newLanguage = language === LANGUAGES.EN ? LANGUAGES.ZH_TW : LANGUAGES.EN;
     setLanguage(newLanguage);
     setHasUserChangedLanguage(true);
     
     // Save to localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', newLanguage);
-      console.log('Saved language preference to localStorage:', newLanguage);
+      console.log('Saved language preference:', newLanguage);
     }
   };
 
   // Get language label
   const getLanguageLabel = () => {
-    return language === LANGUAGES.EN ? 'English' : '中文';
+    return language === LANGUAGES.EN ? 'English' : '繁體中文';
   };
 
   // Get language icon
   const getLanguageIcon = () => {
-    return language === LANGUAGES.EN ? '🇺🇸' : '🇨🇳';
+    return language === LANGUAGES.EN 
+      ? '🇺🇸' // US flag for English
+      : '🇹🇼'; // Taiwan flag for Traditional Chinese
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, getLanguageLabel, getLanguageIcon }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      toggleLanguage, 
+      getLanguageLabel,
+      getLanguageIcon
+    }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -90,7 +97,7 @@ export function LanguageProvider({ children }) {
 // Custom hook to use the language context
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

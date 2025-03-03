@@ -1,9 +1,9 @@
 "use client";
 
-import { useLanguage, LANGUAGES } from '../../contexts/LanguageContext';
+import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
 import Link from 'next/link';
 
-export default function TermsOfService() {
+export function TermsOfServiceClient() {
   const { language } = useLanguage();
   
   const content = language === LANGUAGES.EN ? (
@@ -55,7 +55,7 @@ export default function TermsOfService() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">5. Privacy and Cookies</h2>
         <p className="mb-3">
-          Our service uses cookies only to store your language and timeline view preferences. For more information about how we handle your privacy and use cookies, please refer to our <Link href="/privacy-policy" className="text-blue-600 hover:underline">Privacy Policy</Link> and <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
+          Our service uses cookies only to store your language and timeline view preferences. For more information about how we handle your privacy and use cookies, please refer to our <Link href={`/${language}/privacy-policy`} className="text-blue-600 hover:underline">Privacy Policy</Link> and <Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie Policy</Link>.
         </p>
       </section>
       
@@ -102,7 +102,7 @@ export default function TermsOfService() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← Back to Home</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← Back to Home</Link>
       </div>
     </>
   ) : (
@@ -158,7 +158,7 @@ export default function TermsOfService() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">5. 隐私和Cookies</h2>
         <p className="mb-3">
-          我们的服务仅使用cookies来存储您的语言和时间线视图偏好。有关我们如何处理您的隐私和使用cookies的更多信息，请参阅我们的<Link href="/privacy-policy" className="text-blue-600 hover:underline">隐私政策</Link>和<Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie政策</Link>。
+          我们的服务仅使用cookies来存储您的语言和时间线视图偏好。有关我们如何处理您的隐私和使用cookies的更多信息，请参阅我们的<Link href={`/${language}/privacy-policy`} className="text-blue-600 hover:underline">隐私政策</Link>和<Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie政策</Link>。
         </p>
       </section>
       
@@ -212,7 +212,7 @@ export default function TermsOfService() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← 返回首页</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← 返回首页</Link>
       </div>
     </>
   );

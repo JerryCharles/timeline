@@ -1,9 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-// import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import ClientProvider from "../components/ClientProvider";
-import { LanguageProvider } from "../contexts/LanguageContext";
+import "../globals.css";
+import Footer from "../../components/Footer";
+import ClientProvider from "../../components/ClientProvider";
+import { LanguageProvider } from "../../contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -68,6 +67,24 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
-  return children;
-}
+export default async function LangLayout({ children, params }) {
+  // Await the params
+  const resolvedParams = await params;
+  const lang = resolvedParams?.lang || 'en';
+  
+  return (
+    <html lang={lang} className="dark:dark">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+      >
+        <ClientProvider>
+          <LanguageProvider initialLanguage={lang}>
+            {/* <Navbar /> */}
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </ClientProvider>
+      </body>
+    </html>
+  );
+} 

@@ -1,9 +1,9 @@
 "use client";
 
-import { useLanguage, LANGUAGES } from '../../contexts/LanguageContext';
+import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
 import Link from 'next/link';
 
-export default function PrivacyPolicy() {
+export function PrivacyPolicyClient() {
   const { language } = useLanguage();
   
   const content = language === LANGUAGES.EN ? (
@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookies</h2>
         <p className="mb-3">
-          We use cookies only to store your preferences. For more information about the cookies we use, please see our <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
+          We use cookies only to store your preferences. For more information about the cookies we use, please see our <Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie Policy</Link>.
         </p>
       </section>
       
@@ -85,7 +85,7 @@ export default function PrivacyPolicy() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← Back to Home</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← Back to Home</Link>
       </div>
     </>
   ) : (
@@ -149,7 +149,7 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookie</h2>
         <p className="mb-3">
-          我们仅使用cookies来存储您的偏好。有关我们使用的Cookie的更多信息，请参阅我们的 <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie政策</Link>。
+          我们仅使用cookies来存储您的偏好。有关我们使用的Cookie的更多信息，请参阅我们的 <Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie政策</Link>。
         </p>
       </section>
       
@@ -171,7 +171,7 @@ export default function PrivacyPolicy() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← 返回首页</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← 返回首页</Link>
       </div>
     </>
   );

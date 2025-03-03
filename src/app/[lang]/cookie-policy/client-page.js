@@ -1,9 +1,9 @@
 "use client";
 
-import { useLanguage, LANGUAGES } from '../../contexts/LanguageContext';
+import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
 import Link from 'next/link';
 
-export default function CookiePolicy() {
+export function CookiePolicyClient() {
   const { language } = useLanguage();
   
   const content = language === LANGUAGES.EN ? (
@@ -86,7 +86,7 @@ export default function CookiePolicy() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← Back to Home</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← Back to Home</Link>
       </div>
     </>
   ) : (
@@ -187,7 +187,7 @@ export default function CookiePolicy() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href="/" className="text-blue-600 hover:underline">← 返回首页</Link>
+        <Link href={`/${language}`} className="text-blue-600 hover:underline">← 返回首页</Link>
       </div>
     </>
   );

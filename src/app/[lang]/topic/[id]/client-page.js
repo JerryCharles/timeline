@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Timeline from '../../../components/Timeline';
-import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
-import { getTranslation } from '../../../translations';
-import { getTopicDetails } from '../../../services/api';
+import Timeline from '../../../../components/Timeline';
+import { useLanguage, LANGUAGES } from '../../../../contexts/LanguageContext';
+import { getTranslation } from '../../../../translations';
+import { getTopicDetails } from '../../../../services/api';
 
 function TopicDetailContent({ topicData, error, lang }) {
   const { language } = useLanguage();
@@ -54,7 +54,7 @@ function TopicDetailContent({ topicData, error, lang }) {
               {getTranslation('topic.redirectingIn', currentLang)} {countdown} {getTranslation('topic.seconds', currentLang)}...
             </p>
           </div>
-          <Link href="/" className="mt-4 inline-block text-blue-600 hover:underline">
+          <Link href={`/${currentLang}`} className="mt-4 inline-block text-blue-600 hover:underline">
             {getTranslation('topic.returnToHome', currentLang)}
           </Link>
         </div>
@@ -62,45 +62,47 @@ function TopicDetailContent({ topicData, error, lang }) {
     );
   }
 
-  const topic = topicData.topic;
-  const events = topicData.events || [];
+  const { topic, events = [] } = topicData;
 
-  // Get title based on language
+  // Helper function to get the title in the current language
   const getTitle = (topic) => {
     if (!topic) return '';
     if (typeof topic.title === 'object') {
       return topic.title[currentLang] || topic.title[LANGUAGES.EN] || '';
     }
-    if (currentLang === LANGUAGES.CN && topic.titleCN) {
-      return topic.titleCN;
+    if (currentLang === LANGUAGES.ZH_TW && topic.titleZh) {
+      return topic.titleZh;
     }
     return topic.title || '';
   };
 
-  // Get summary based on language
+  // Helper function to get the summary in the current language
   const getSummary = (topic) => {
     if (!topic) return '';
     if (typeof topic.summary === 'object') {
       return topic.summary[currentLang] || topic.summary[LANGUAGES.EN] || '';
     }
-    if (currentLang === LANGUAGES.CN && topic.summaryCN) {
-      return topic.summaryCN;
+    if (currentLang === LANGUAGES.ZH_TW && topic.summaryZh) {
+      return topic.summaryZh;
     }
     return topic.summary || '';
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex items-center justify-between mb-8">
-        <Link href="/" className="text-blue-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+      <div className="mb-6">
+        <Link href={`/${currentLang}`} className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
+          {getTranslation('topic.returnToHome', currentLang)}
         </Link>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center flex-grow">
+      </div>
+
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {getTitle(topic)}
         </h1>
-        <div className="w-8"></div> {/* Spacer for alignment */}
       </div>
 
       {/* Topic Image */}
@@ -149,16 +151,25 @@ function TopicDetailContent({ topicData, error, lang }) {
       </div>
 
       {/* Timeline Section */}
-      <div className="mt-12">
+      <div className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             {getTranslation('topic.timelineOfEvents', currentLang)}
           </h2>
           <div id="timeline-view-switcher-container"></div>
         </div>
-        <Timeline events={events} showViewSwitcherInHeader={true} />
+        
+        {events.length > 0 ? (
+          <Timeline events={events} language={currentLang} />
+        ) : (
+          <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <p className="text-gray-600 dark:text-gray-400">
+              {getTranslation('timeline.noEvents', currentLang)}
+            </p>
+          </div>
+        )}
       </div>
-      
+
       {/* Related Topics Section */}
       {topic.relatedTopics && topic.relatedTopics.length > 0 && (
         <div className="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
@@ -168,8 +179,8 @@ function TopicDetailContent({ topicData, error, lang }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {topic.relatedTopics.map((relatedTopic) => (
               <Link 
-                key={relatedTopic.topicID}
-                href={`/topic/${relatedTopic.topicID}`}
+                key={relatedTopic.topicID} 
+                href={`/${currentLang}/topic/${relatedTopic.topicID}`}
                 className="block p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow"
               >
                 <h3 className="font-medium text-gray-900 dark:text-white">
@@ -185,9 +196,10 @@ function TopicDetailContent({ topicData, error, lang }) {
 }
 
 // Client component that handles client-side logic
-export default function ClientTopicPage({ id, lang }) {
+export default function TopicPageClient({ params }) {
   const { language } = useLanguage();
-  const currentLang = lang || language;
+  const currentLang = params?.lang || language;
+  const id = params?.id;
   const [topicData, setTopicData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -202,7 +214,17 @@ export default function ClientTopicPage({ id, lang }) {
 
       try {
         setLoading(true);
-        const data = await getTopicDetails(id);
+        // Parse the ID as an integer
+        const numericId = parseInt(id, 10);
+        
+        // Check if the ID is a valid number
+        if (isNaN(numericId)) {
+          setError(getTranslation('topic.invalidTopicId', currentLang) || 'Invalid topicID parameter');
+          setLoading(false);
+          return;
+        }
+        
+        const data = await getTopicDetails(numericId);
         
         if (data.notFound) {
           setError(getTranslation('topic.topicNotFound', currentLang));

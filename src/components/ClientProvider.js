@@ -1,11 +1,11 @@
 "use client";
 
-import { LanguageProvider } from '../contexts/LanguageContext';
+// Remove the LanguageProvider import since it's already provided in layout.js
+// import { LanguageProvider } from '../contexts/LanguageContext';
 
 export default function ClientProvider({ children }) {
   return (
-    <LanguageProvider>
-      {children}
-    </LanguageProvider>
+    // Just return the children directly
+    <>{children}</>
   );
 } 

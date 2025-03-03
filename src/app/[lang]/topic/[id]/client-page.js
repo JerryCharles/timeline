@@ -70,8 +70,8 @@ function TopicDetailContent({ topicData, error, lang }) {
     if (typeof topic.title === 'object') {
       return topic.title[currentLang] || topic.title[LANGUAGES.EN] || '';
     }
-    if (currentLang === LANGUAGES.ZH_TW && topic.titleZh) {
-      return topic.titleZh;
+    if (currentLang === LANGUAGES.CN || currentLang === LANGUAGES.ZH_TW) {
+      return topic.titleZh || topic.titleCN || topic.title || '';
     }
     return topic.title || '';
   };
@@ -82,27 +82,39 @@ function TopicDetailContent({ topicData, error, lang }) {
     if (typeof topic.summary === 'object') {
       return topic.summary[currentLang] || topic.summary[LANGUAGES.EN] || '';
     }
-    if (currentLang === LANGUAGES.ZH_TW && topic.summaryZh) {
-      return topic.summaryZh;
+    if (currentLang === LANGUAGES.CN || currentLang === LANGUAGES.ZH_TW) {
+      return topic.summaryZh || topic.summaryCN || topic.summary || '';
     }
     return topic.summary || '';
   };
 
+  // Helper function to get the content in the current language
+  const getContent = (topic) => {
+    if (!topic) return '';
+    if (typeof topic.content === 'object') {
+      return topic.content[currentLang] || topic.content[LANGUAGES.EN] || '';
+    }
+    if (currentLang === LANGUAGES.ZH_TW) {
+      // Try both contentZh and contentCN
+      return topic.contentZh || topic.contentCN || topic.content || '';
+    }
+    return topic.content || '';
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-6">
-        <Link href={`/${currentLang}`} className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="mb-8 flex items-center justify-between relative">
+        <Link href={`/${currentLang}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 absolute left-0 z-10">
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
-          {getTranslation('topic.returnToHome', currentLang)}
         </Link>
-      </div>
-
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mx-auto text-center">
           {getTitle(topic)}
         </h1>
+        
+        <div className="w-8"></div>
       </div>
 
       {/* Topic Image */}

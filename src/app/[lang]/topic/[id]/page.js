@@ -37,13 +37,13 @@ export async function generateMetadata({ params }) {
     const { topic } = topicData;
     
     // Get title in the correct language
-    const title = lang === 'zh-TW' && topic.titleZh 
-      ? topic.titleZh 
+    const title = lang === 'zh-TW' 
+      ? (topic.titleZh || topic.titleCN || topic.title) 
       : topic.title || 'Historical Timeline';
     
     // Get description in the correct language
-    const description = lang === 'zh-TW' && topic.summaryZh
-      ? topic.summaryZh
+    const description = lang === 'zh-TW'
+      ? (topic.summaryZh || topic.summaryCN || topic.summary)
       : topic.summary || 'Explore this historical timeline and discover significant events.';
     
     // Get image URL

@@ -30,16 +30,16 @@ const formatDate = (timestamp, language) => {
 
 // Get title based on language
 const getTitle = (event, language) => {
-  if (language === LANGUAGES.CN && event.titleCN) {
-    return event.titleCN;
+  if (language === LANGUAGES.CN || language === LANGUAGES.ZH_TW) {
+    return event.titleZh || event.titleCN || event.title;
   }
   return event.title;
 };
 
 // Get content based on language
 const getContent = (event, language) => {
-  if (language === LANGUAGES.CN && event.contentCN) {
-    return event.contentCN;
+  if (language === LANGUAGES.CN || language === LANGUAGES.ZH_TW) {
+    return event.contentZh || event.contentCN || event.content;
   }
   return event.content;
 };

@@ -19,72 +19,58 @@ const formatDate = (timestamp, language) => {
   return `${year}-${month}-${day} ${hours}:${minutes}`;
 };
 
-export default function TopicCard({ topic, language: propLanguage, href }) {
-  const { language: contextLanguage } = useLanguage();
-  const language = propLanguage || contextLanguage;
-
-  // Function to handle image URL encoding
-  const getImageUrl = (url) => {
-    if (!url) return '';
-    try {
-      // First encode to handle special characters, then decode to get a clean URL
-      return decodeURIComponent(encodeURIComponent(url));
-    } catch {
-      return url;
-    }
-  };
-
-  // Get title based on language
-  const getTitle = () => {
-    if (!topic) return '';
-    if (language === LANGUAGES.ZH_TW && topic.titleZh) {
-      return topic.titleZh;
-    }
-    return topic.title || '';
-  };
-
-  // Get summary based on language
-  const getSummary = () => {
-    if (!topic) return '';
-    if (language === LANGUAGES.ZH_TW && topic.summaryZh) {
-      return topic.summaryZh;
-    }
-    return topic.summary || '';
-  };
-
-  if (!topic) {
-    return null;
+// Get title based on language
+const getTitle = (topic, language) => {
+  if (!topic) return '';
+  if (typeof topic.title === 'object') {
+    return topic.title[language] || topic.title[LANGUAGES.EN] || '';
   }
+  if (language === LANGUAGES.CN || language === LANGUAGES.ZH_TW) {
+    return topic.titleZh || topic.titleCN || topic.title || '';
+  }
+  return topic.title || '';
+};
 
-  // Use the provided href or fallback to the default
-  const linkHref = href || `/topic/${topic.topicID}`;
+// Get summary based on language
+const getSummary = (topic, language) => {
+  if (!topic) return '';
+  if (typeof topic.summary === 'object') {
+    return topic.summary[language] || topic.summary[LANGUAGES.EN] || '';
+  }
+  if (language === LANGUAGES.CN || language === LANGUAGES.ZH_TW) {
+    return topic.summaryZh || topic.summaryCN || topic.summary || '';
+  }
+  return topic.summary || '';
+};
+
+export default function TopicCard({ topic }) {
+  const { language } = useLanguage();
 
   return (
-    <Link href={linkHref} className="block h-full">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+    <Link href={`/${language}/topic/${topic.topicID}`} className="block h-full">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] h-full flex flex-col">
         {topic.image && (
-          <div className="relative w-full h-48">
+          <div className="relative h-48 flex-shrink-0">
             <Image
-              src={getImageUrl(topic.image)}
-              alt={getTitle()}
+              src={topic.image}
+              alt={getTitle(topic, language)}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         )}
-        <div className="p-5 flex flex-col flex-grow">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            {getTitle()}
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+            {getTitle(topic, language)}
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 line-clamp-3 mb-4 flex-grow">
-            {getSummary()}
+          <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow line-clamp-3">
+            {getSummary(topic, language)}
           </p>
-          <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm mt-auto">
+          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-auto">
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            {formatDate(topic.time, language)}
+            <time>{formatDate(topic.updateTime, language)}</time>
           </div>
         </div>
       </div>

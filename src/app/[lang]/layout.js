@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Footer from "../../components/Footer";
-import ClientProvider from "../../components/ClientProvider";
 import { LanguageProvider } from "../../contexts/LanguageContext";
+import { ThemeProvider } from "../../contexts/ThemeContext";
+import Header from "../../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,23 +68,23 @@ export const metadata = {
   },
 };
 
-export default async function LangLayout({ children, params }) {
-  // Await the params
-  const resolvedParams = await params;
-  const lang = resolvedParams?.lang || 'en';
+export default function RootLayout({ children, params }) {
+  const { lang } = params;
   
   return (
-    <html lang={lang} className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
-      >
-        <ClientProvider>
-          <LanguageProvider initialLanguage={lang}>
-            {/* <Navbar /> */}
-            <main className="flex-grow">{children}</main>
-            <Footer />
+    <html lang={lang} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}>
+        <ThemeProvider>
+          <LanguageProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header language={lang} />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer language={lang} />
+            </div>
           </LanguageProvider>
-        </ClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

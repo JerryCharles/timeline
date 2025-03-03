@@ -3,10 +3,11 @@
 import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
 import Link from 'next/link';
 
-export function CookiePolicyClient() {
+export function CookiePolicyClient({ params }) {
   const { language } = useLanguage();
+  const currentLang = params?.lang || language;
   
-  const content = language === LANGUAGES.EN ? (
+  const content = currentLang === LANGUAGES.EN ? (
     <>
       <h1 className="text-3xl font-bold mb-6">Cookie Policy</h1>
       <p className="mb-4">Last Updated: {new Date().toLocaleDateString()}</p>
@@ -86,7 +87,7 @@ export function CookiePolicyClient() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href={`/${language}`} className="text-blue-600 hover:underline">← Back to Home</Link>
+        <Link href={`/${currentLang}`} className="text-blue-600 hover:underline">← Back to Home</Link>
       </div>
     </>
   ) : (
@@ -187,7 +188,7 @@ export function CookiePolicyClient() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href={`/${language}`} className="text-blue-600 hover:underline">← 返回首页</Link>
+        <Link href={`/${currentLang}`} className="text-blue-600 hover:underline">← 返回首页</Link>
       </div>
     </>
   );

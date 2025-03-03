@@ -172,7 +172,7 @@ function TopicDetailContent({ topicData, error, lang }) {
         </div>
         
         {events.length > 0 ? (
-          <Timeline events={events} language={currentLang} />
+          <Timeline events={events} language={currentLang} showViewSwitcherInHeader={true} />
         ) : (
           <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">

@@ -3,10 +3,11 @@
 import { useLanguage, LANGUAGES } from '../../../contexts/LanguageContext';
 import Link from 'next/link';
 
-export function PrivacyPolicyClient() {
+export function PrivacyPolicyClient({ params }) {
   const { language } = useLanguage();
+  const currentLang = params?.lang || language;
   
-  const content = language === LANGUAGES.EN ? (
+  const content = currentLang === LANGUAGES.EN ? (
     <>
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
       <p className="mb-4">Last Updated: {new Date().toLocaleDateString()}</p>
@@ -65,7 +66,7 @@ export function PrivacyPolicyClient() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookies</h2>
         <p className="mb-3">
-          We use cookies only to store your preferences. For more information about the cookies we use, please see our <Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie Policy</Link>.
+          We use cookies only to store your preferences. For more information about the cookies we use, please see our <Link href={`/${currentLang}/cookie-policy`} className="text-blue-600 hover:underline">Cookie Policy</Link>.
         </p>
       </section>
       
@@ -85,7 +86,7 @@ export function PrivacyPolicyClient() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href={`/${language}`} className="text-blue-600 hover:underline">← Back to Home</Link>
+        <Link href={`/${currentLang}`} className="text-blue-600 hover:underline">← Back to Home</Link>
       </div>
     </>
   ) : (
@@ -149,7 +150,7 @@ export function PrivacyPolicyClient() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookie</h2>
         <p className="mb-3">
-          我们仅使用cookies来存储您的偏好。有关我们使用的Cookie的更多信息，请参阅我们的 <Link href={`/${language}/cookie-policy`} className="text-blue-600 hover:underline">Cookie政策</Link>。
+          我们仅使用cookies来存储您的偏好。有关我们使用的Cookie的更多信息，请参阅我们的 <Link href={`/${currentLang}/cookie-policy`} className="text-blue-600 hover:underline">Cookie政策</Link>。
         </p>
       </section>
       
@@ -171,7 +172,7 @@ export function PrivacyPolicyClient() {
       </section>
       
       <div className="mt-8 pt-4 border-t border-gray-200">
-        <Link href={`/${language}`} className="text-blue-600 hover:underline">← 返回首页</Link>
+        <Link href={`/${currentLang}`} className="text-blue-600 hover:underline">← 返回首页</Link>
       </div>
     </>
   );

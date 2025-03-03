@@ -1,5 +1,5 @@
 import { PrivacyPolicyClient } from './client-page';
 
-export default function PrivacyPolicy() {
-  return <PrivacyPolicyClient />;
+export default function PrivacyPolicy({ params }) {
+  return <PrivacyPolicyClient params={params} />;
 } 

@@ -4,112 +4,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { getTranslation } from '../translations';
 
-// Create a theme context provider component
-const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('system');
-  
-  useEffect(() => {
-    // Initialize theme from localStorage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme('system');
-    }
-    
-    // Apply theme on initial load
-    applyTheme(savedTheme || 'system');
-    
-    // Listen for system preference changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
-      if (theme === 'system') {
-        applyTheme('system');
-      }
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme]);
-  
-  const applyTheme = (mode) => {
-    const isDark = 
-      mode === 'dark' || 
-      (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.style.setProperty('--background', '#0a0a0a');
-      document.documentElement.style.setProperty('--foreground', '#ededed');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.style.setProperty('--background', '#ffffff');
-      document.documentElement.style.setProperty('--foreground', '#171717');
-    }
-  };
-  
-  const setThemePreference = (mode) => {
-    setTheme(mode);
-    localStorage.setItem('theme', mode);
-    applyTheme(mode);
-  };
-  
-  return { theme, setThemePreference };
-};
-
-export default function Footer() {
+export default function Footer({ language: urlLanguage }) {
   const [year, setYear] = useState('');
-  const [theme, setTheme] = useState('system');
   const [mounted, setMounted] = useState(false);
-  const { language, toggleLanguage, getLanguageLabel, getLanguageIcon } = useLanguage();
+  const { language: contextLanguage, toggleLanguage, getLanguageLabel, getLanguageIcon } = useLanguage();
+  const { theme, setThemePreference } = useTheme();
+  const language = urlLanguage || contextLanguage;
   
   useEffect(() => {
-    // Set current year
     setYear(new Date().getFullYear().toString());
-    
-    // Initialize theme state
-    const savedTheme = localStorage.getItem('theme') || 'system';
-    setTheme(savedTheme);
-    
-    // Mark as mounted
     setMounted(true);
-    
-    // Apply theme on initial load
-    applyTheme(savedTheme);
-    
-    // Listen for system preference changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
-      if (savedTheme === 'system') {
-        applyTheme('system');
-      }
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
-  
-  // Apply theme based on preference
-  const applyTheme = (mode) => {
-    const isDark = 
-      mode === 'dark' || 
-      (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
   
   // Toggle between light, dark, and system
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    applyTheme(newTheme);
+    setThemePreference(newTheme);
   };
   
   // Get the current theme icon and label
@@ -145,13 +58,13 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             {/* Legal links */}
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <Link href="/privacy-policy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <Link href={`/${language}/privacy-policy`} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                 {getTranslation('footer.privacyPolicy', language)}
               </Link>
-              <Link href="/terms-of-service" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <Link href={`/${language}/terms-of-service`} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                 {getTranslation('footer.termsOfService', language)}
               </Link>
-              <Link href="/cookie-policy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <Link href={`/${language}/cookie-policy`} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                 {getTranslation('footer.cookiePolicy', language)}
               </Link>
             </div>

@@ -1,8 +1,11 @@
-import Image from 'next/image';
-import { useLanguage, LANGUAGES } from '../contexts/LanguageContext';
+"use client";
 
-export default function Header() {
-  const { language, toggleLanguage, getLanguageLabel } = useLanguage();
+import Image from 'next/image';
+import { useLanguage } from '../contexts/LanguageContext';
+
+export default function Header({ language: urlLanguage }) {
+  const { language: contextLanguage, toggleLanguage, getLanguageLabel } = useLanguage();
+  const language = urlLanguage || contextLanguage;
 
   return (
     <header className="w-full bg-white dark:bg-gray-900 shadow-md">

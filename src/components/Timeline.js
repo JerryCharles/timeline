@@ -67,8 +67,9 @@ const TimelineViewSwitcher = ({ timelineStyle, toggleTimelineStyle, language }) 
   </button>
 );
 
-export default function Timeline({ events = [], showViewSwitcherInHeader = false }) {
-  const { language } = useLanguage();
+export default function Timeline({ events = [], showViewSwitcherInHeader = false, language: urlLanguage }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = urlLanguage || contextLanguage;
   const [timelineStyle, setTimelineStyle] = useState(() => {
     // Initialize from localStorage if available
     if (typeof window !== 'undefined') {

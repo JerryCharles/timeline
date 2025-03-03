@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import TopicCard from "../../components/TopicCard";
 import Pagination from "../../components/Pagination";
-import Header from "../../components/Header";
 import { getTopics } from "../../services/api";
 import { PAGINATION } from "../../config";
 import { useLanguage, LANGUAGES } from '../../contexts/LanguageContext';
@@ -76,8 +75,6 @@ export default function LangHomePageClient({ params }) {
 
   return (
     <div className="min-h-screen">
-      <Header />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? (

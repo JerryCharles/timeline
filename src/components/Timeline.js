@@ -69,11 +69,23 @@ const TimelineViewSwitcher = ({ timelineStyle, toggleTimelineStyle, language }) 
 
 export default function Timeline({ events = [], showViewSwitcherInHeader = false }) {
   const { language } = useLanguage();
-  const [timelineStyle, setTimelineStyle] = useState('left'); // 'left' or 'center'
+  const [timelineStyle, setTimelineStyle] = useState(() => {
+    // Initialize from localStorage if available
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('timelineStyle') || 'left';
+    }
+    return 'left';
+  });
   const [portalContainer, setPortalContainer] = useState(null);
   
-  // Use the original order from the API
-  // No sorting needed - events[0] will be at the top of the timeline
+  // Toggle timeline style and save to localStorage
+  const toggleTimelineStyle = () => {
+    const newStyle = timelineStyle === 'left' ? 'center' : 'left';
+    setTimelineStyle(newStyle);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('timelineStyle', newStyle);
+    }
+  };
 
   // Effect to find the portal container when component mounts
   useEffect(() => {
@@ -85,6 +97,14 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
     }
   }, [showViewSwitcherInHeader]);
 
+  // Function to get event background class based on type
+  const getEventBackgroundClass = (event) => {
+    if (event.type === 1) {
+      return 'bg-yellow-50 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-800';
+    }
+    return 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700';
+  };
+
   if (events.length === 0) {
     return (
       <div className="text-center py-8">
@@ -94,11 +114,6 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
       </div>
     );
   }
-  
-  // Toggle timeline style
-  const toggleTimelineStyle = () => {
-    setTimelineStyle(timelineStyle === 'left' ? 'center' : 'left');
-  };
 
   return (
     <div>
@@ -128,7 +143,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
         <div className="relative border-l border-gray-200 dark:border-gray-700 ml-3">
           {events.map((event, index) => (
             <React.Fragment key={`event-fragment-${event.eventID || event.id || index}-${index}`}>
-              <div className="mb-10 ml-6 pb-6 border-b border-gray-100 dark:border-gray-800">
+              <div className={`mb-10 ml-6 pb-6 border-b border-gray-100 dark:border-gray-800 ${getEventBackgroundClass(event)} rounded-lg p-4`}>
                 <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                   <svg className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
@@ -171,17 +186,18 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
         /* Center-aligned Timeline */
         <div className="relative">
           {/* Center line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-200 dark:border-gray-700"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-200 dark:border-gray-700 -z-10"></div>
           
           {events.map((event, index) => {
             const isEven = index % 2 === 0;
+            const shouldCenter = event.type === 1;
             
             return (
               <React.Fragment key={`event-centered-fragment-${event.eventID || event.id || index}-${index}`}>
                 <div className="mb-12">
-                  {/* Content positioned left or right */}
-                  <div className={`flex ${isEven ? 'justify-start' : 'justify-end'}`}>
-                    <div className={`w-5/12 bg-white dark:bg-gray-800 p-4 rounded-lg shadow border border-gray-100 dark:border-gray-700`}>
+                  {/* Content positioned left, right, or center based on type */}
+                  <div className={`flex ${shouldCenter ? 'justify-center' : isEven ? 'justify-start' : 'justify-end'}`}>
+                    <div className={`${shouldCenter ? 'w-8/12' : 'w-5/12'} ${getEventBackgroundClass(event)} p-4 rounded-lg shadow border relative z-10`}>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                         {getTitle(event, language)}
                       </h3>

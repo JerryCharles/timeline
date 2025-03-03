@@ -12,7 +12,7 @@ import { getTopicDetails } from '../../../services/api';
 function TopicDetailContent({ topicData, error }) {
   const { language } = useLanguage();
   const router = useRouter();
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(3);
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   // Handle countdown
@@ -90,85 +90,95 @@ function TopicDetailContent({ topicData, error }) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Link href="/" className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline mb-6">
-        <svg className="w-3.5 h-3.5 mr-1 rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-        </svg>
-        {getTranslation('topic.backToTopics', language)}
-      </Link>
-
-      <div>
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            {getTitle(topic)}
-          </h1>
-        </div>
-
-        <div className="prose prose-lg max-w-none dark:prose-invert mb-12">
-          <p>{getSummary(topic)}</p>
-        </div>
-
-        {/* Sponsored Content Section */}
-        <div className="mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <div className="flex items-center mb-4">
-            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-              {getTranslation('topic.sponsoredContent', language)}
-            </span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                {getTranslation('topic.adTitle', language)}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {getTranslation('topic.adDescription', language)}
-              </p>
-              <a 
-                href="#" 
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                {getTranslation('topic.learnMore', language)}
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Timeline Section */}
-        <div className="mt-12">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {getTranslation('topic.timelineOfEvents', language)}
-            </h2>
-            <div id="timeline-view-switcher-container"></div>
-          </div>
-          <Timeline events={events} showViewSwitcherInHeader={true} />
-        </div>
-        
-        {/* Related Topics Section */}
-        {topic.relatedTopics && topic.relatedTopics.length > 0 && (
-          <div className="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">
-              {getTranslation('topic.relatedTopics', language)}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {topic.relatedTopics.map((relatedTopic) => (
-                <Link 
-                  key={relatedTopic.topicID}
-                  href={`/topic/${relatedTopic.topicID}`}
-                  className="block p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow"
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">
-                    {getTitle(relatedTopic)}
-                  </h3>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+      <div className="flex items-center justify-between mb-8">
+        <Link href="/" className="text-blue-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </Link>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center flex-grow">
+          {getTitle(topic)}
+        </h1>
+        <div className="w-8"></div> {/* Spacer for alignment */}
       </div>
+
+      {/* Topic Image */}
+      {topic.image && (
+        <div className="mb-3 relative aspect-[21/9] overflow-hidden rounded-xl">
+          <Image
+            src={topic.image}
+            alt={getTitle(topic)}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
+
+      <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
+        <p>{getSummary(topic)}</p>
+      </div>
+
+      {/* Sponsored Content Section */}
+      <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="flex items-center mb-4">
+          <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+            {getTranslation('topic.sponsoredContent', language)}
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+              {getTranslation('topic.adTitle', language)}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {getTranslation('topic.adDescription', language)}
+            </p>
+            <a 
+              href="#" 
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              {getTranslation('topic.learnMore', language)}
+              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Timeline Section */}
+      <div className="mt-12">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {getTranslation('topic.timelineOfEvents', language)}
+          </h2>
+          <div id="timeline-view-switcher-container"></div>
+        </div>
+        <Timeline events={events} showViewSwitcherInHeader={true} />
+      </div>
+      
+      {/* Related Topics Section */}
+      {topic.relatedTopics && topic.relatedTopics.length > 0 && (
+        <div className="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">
+            {getTranslation('topic.relatedTopics', language)}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topic.relatedTopics.map((relatedTopic) => (
+              <Link 
+                key={relatedTopic.topicID}
+                href={`/topic/${relatedTopic.topicID}`}
+                className="block p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow"
+              >
+                <h3 className="font-medium text-gray-900 dark:text-white">
+                  {getTitle(relatedTopic)}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

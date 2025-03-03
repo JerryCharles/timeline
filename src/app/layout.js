@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Timeline App",
-  description: "A timeline application built with Next.js",
+  title: "Timeline Unravel the insights.",
+  description: "Easy understand and analyze the insights.",
 };
 
 export default function RootLayout({ children }) {

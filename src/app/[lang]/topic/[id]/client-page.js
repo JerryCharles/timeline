@@ -131,18 +131,18 @@ function TopicDetailContent({ topicData, error, lang }) {
       )}
 
       <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
-        <p>{getSummary(topic)}</p>
+        <p className="text-gray-600 dark:text-gray-300">{getSummary(topic)}</p>
       </div>
 
       {/* Sponsored Content Section */}
-      <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="flex items-center mb-4">
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
             {getTranslation('topic.sponsoredContent', currentLang)}
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+          <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-600">
             <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
               {getTranslation('topic.adTitle', currentLang)}
             </h3>
@@ -151,7 +151,7 @@ function TopicDetailContent({ topicData, error, lang }) {
             </p>
             <a 
               href="#" 
-              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
             >
               {getTranslation('topic.learnMore', currentLang)}
               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,7 +174,7 @@ function TopicDetailContent({ topicData, error, lang }) {
         {events.length > 0 ? (
           <Timeline events={events} language={currentLang} />
         ) : (
-          <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">
               {getTranslation('timeline.noEvents', currentLang)}
             </p>
@@ -184,8 +184,8 @@ function TopicDetailContent({ topicData, error, lang }) {
 
       {/* Related Topics Section */}
       {topic.relatedTopics && topic.relatedTopics.length > 0 && (
-        <div className="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">
+        <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
             {getTranslation('topic.relatedTopics', currentLang)}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -193,7 +193,7 @@ function TopicDetailContent({ topicData, error, lang }) {
               <Link 
                 key={relatedTopic.topicID} 
                 href={`/${currentLang}/topic/${relatedTopic.topicID}`}
-                className="block p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow"
+                className="block p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow"
               >
                 <h3 className="font-medium text-gray-900 dark:text-white">
                   {getTitle(relatedTopic)}

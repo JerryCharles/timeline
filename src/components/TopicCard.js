@@ -48,7 +48,7 @@ export default function TopicCard({ topic }) {
 
   return (
     <Link href={`/${language}/topic/${topic.topicID}`} className="block h-full">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] h-full flex flex-col">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] h-full flex flex-col border border-gray-200 dark:border-gray-700">
         {topic.image && (
           <div className="relative h-48 flex-shrink-0">
             <Image

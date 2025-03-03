@@ -99,12 +99,8 @@ export default function Footer() {
     
     if (isDark) {
       document.documentElement.classList.add('dark');
-      document.documentElement.style.setProperty('--background', '#0a0a0a');
-      document.documentElement.style.setProperty('--foreground', '#ededed');
     } else {
       document.documentElement.classList.remove('dark');
-      document.documentElement.style.setProperty('--background', '#ffffff');
-      document.documentElement.style.setProperty('--foreground', '#171717');
     }
   };
   

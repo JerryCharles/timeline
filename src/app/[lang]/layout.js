@@ -73,9 +73,9 @@ export default async function LangLayout({ children, params }) {
   const lang = resolvedParams?.lang || 'en';
   
   return (
-    <html lang={lang} className="dark:dark">
+    <html lang={lang} className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
         <ClientProvider>
           <LanguageProvider initialLanguage={lang}>

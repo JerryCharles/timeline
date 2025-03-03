@@ -100,7 +100,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
   // Function to get event background class based on type
   const getEventBackgroundClass = (event) => {
     if (event.type === 1) {
-      return 'bg-yellow-50 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-800';
+      return 'bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800';
     }
     return 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700';
   };
@@ -186,7 +186,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
         /* Center-aligned Timeline */
         <div className="relative">
           {/* Center line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-200 dark:border-gray-700 -z-10"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-200 dark:border-gray-700 z-0"></div>
           
           {events.map((event, index) => {
             const isEven = index % 2 === 0;
@@ -197,7 +197,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                 <div className="mb-12">
                   {/* Content positioned left, right, or center based on type */}
                   <div className={`flex ${shouldCenter ? 'justify-center' : isEven ? 'justify-start' : 'justify-end'}`}>
-                    <div className={`${shouldCenter ? 'w-8/12' : 'w-5/12'} ${getEventBackgroundClass(event)} p-4 rounded-lg shadow border relative z-10`}>
+                    <div className={`${shouldCenter ? 'w-8/12' : 'w-5/12'} ${getEventBackgroundClass(event)} p-4 rounded-lg shadow border relative z-30`}>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                         {getTitle(event, language)}
                       </h3>
@@ -231,7 +231,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                   </div>
                   
                   {/* Dot indicator on the line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -mt-24">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -mt-24 z-20">
                     <div className="w-5 h-5 rounded-full bg-blue-500 dark:bg-blue-400 border-4 border-white dark:border-gray-900"></div>
                   </div>
                 </div>

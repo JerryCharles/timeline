@@ -15,12 +15,8 @@ export default function CookiePolicy() {
         <h2 className="text-xl font-semibold mb-3">1. Introduction</h2>
         <p className="mb-3">
           This Cookie Policy explains how Timeline ("we", "us", and "our") uses cookies and similar technologies 
-          to recognize you when you visit our website. It explains what these technologies are and why we use them, 
+          to store your preferences when you visit our website. It explains what these technologies are and why we use them, 
           as well as your rights to control our use of them.
-        </p>
-        <p className="mb-3">
-          In some cases we may use cookies to collect personal information, or that becomes personal information if we 
-          combine it with other information.
         </p>
       </section>
       
@@ -28,102 +24,64 @@ export default function CookiePolicy() {
         <h2 className="text-xl font-semibold mb-3">2. What are cookies?</h2>
         <p className="mb-3">
           Cookies are small data files that are placed on your computer or mobile device when you visit a website. 
-          Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, 
-          as well as to provide reporting information.
-        </p>
-        <p className="mb-3">
-          Cookies set by the website owner (in this case, Timeline) are called "first party cookies". Cookies set by 
-          parties other than the website owner are called "third party cookies". Third party cookies enable third party 
-          features or functionality to be provided on or through the website (e.g. like advertising, interactive content 
-          and analytics). The parties that set these third party cookies can recognize your computer both when it visits 
-          the website in question and also when it visits certain other websites.
+          Cookies are widely used by website owners to make their websites work more efficiently and provide a better user experience.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. Why do we use cookies?</h2>
+        <h2 className="text-xl font-semibold mb-3">3. How we use cookies</h2>
         <p className="mb-3">
-          We use first and third party cookies for several reasons. Some cookies are required for technical reasons in order 
-          for our website to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies also 
-          enable us to track and target the interests of our users to enhance the experience on our online properties. 
-          Third parties serve cookies through our website for advertising, analytics and other purposes.
+          We use only first-party cookies for essential functionality. We do not use any third-party cookies, tracking cookies, or advertising cookies.
+          The cookies we use are strictly necessary to:
         </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">Remember your language preference (English or Chinese)</li>
+          <li className="mb-2">Remember your timeline view layout preference (left-aligned or centered)</li>
+        </ul>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">4. Types of cookies we use</h2>
         <p className="mb-3">
-          The specific types of first and third party cookies served through our website and the purposes they perform are 
-          described below:
+          We use only essential functional cookies:
         </p>
         <ul className="list-disc pl-6 mb-3">
           <li className="mb-2">
-            <strong>Essential website cookies:</strong> These cookies are strictly necessary to provide you with services 
-            available through our website and to use some of its features, such as access to secure areas.
+            <strong>Language preference cookie:</strong> Stores your preferred language setting (English or Chinese)
           </li>
           <li className="mb-2">
-            <strong>Performance and functionality cookies:</strong> These cookies are used to enhance the performance and 
-            functionality of our website but are non-essential to their use. However, without these cookies, certain 
-            functionality may become unavailable.
+            <strong>Timeline layout cookie:</strong> Stores your preferred timeline view layout (left-aligned or centered)
           </li>
-          <li className="mb-2">
-            <strong>Analytics and customization cookies:</strong> These cookies collect information that is used either in 
-            aggregate form to help us understand how our website is being used or how effective our marketing campaigns are, 
-            or to help us customize our website for you.
-          </li>
-          <li className="mb-2">
-            <strong>Advertising cookies:</strong> These cookies are used to make advertising messages more relevant to you. 
-            They perform functions like preventing the same ad from continuously reappearing, ensuring that ads are properly 
-            displayed for advertisers, and in some cases selecting advertisements that are based on your interests.
-          </li>
-          <li className="mb-2">
-            <strong>Social networking cookies:</strong> These cookies are used to enable you to share pages and content that 
-            you find interesting on our website through third party social networking and other websites. These cookies may 
-            also be used for advertising purposes.
-          </li>
+        </ul>
+        <p className="mb-3">
+          We do not use any:
+        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">Analytics cookies</li>
+          <li className="mb-2">Advertising cookies</li>
+          <li className="mb-2">Third-party cookies</li>
+          <li className="mb-2">Tracking cookies</li>
         </ul>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">5. How can you control cookies?</h2>
+        <h2 className="text-xl font-semibold mb-3">5. How to control cookies</h2>
         <p className="mb-3">
-          You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting 
-          your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories 
-          of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide 
-          you with services.
-        </p>
-        <p className="mb-3">
-          You can also set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, 
-          you may still use our website though your access to some functionality and areas of our website may be restricted. 
-          As the means by which you can refuse cookies through your web browser controls vary from browser-to-browser, you 
-          should visit your browser's help menu for more information.
-        </p>
-        <p className="mb-3">
-          In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find 
-          out more information, please visit <a href="http://www.aboutads.info/choices/" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">http://www.aboutads.info/choices/</a> or 
-          <a href="http://www.youronlinechoices.com" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">http://www.youronlinechoices.com</a>.
+          You can control the use of cookies at the browser level. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. However, if you do this, you may have to manually adjust some preferences every time you visit our website, and some features may not work as intended.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">6. How often will we update this Cookie Policy?</h2>
+        <h2 className="text-xl font-semibold mb-3">6. Updates to this policy</h2>
         <p className="mb-3">
-          We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use 
-          or for other operational, legal or regulatory reasons. Please therefore re-visit this Cookie Policy regularly to 
-          stay informed about our use of cookies and related technologies.
-        </p>
-        <p className="mb-3">
-          The date at the top of this Cookie Policy indicates when it was last updated.
+          We may update this Cookie Policy from time to time to reflect changes in our practices or for operational, legal, or regulatory reasons. The date at the top of this Cookie Policy indicates when it was last updated.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">7. Where can you get further information?</h2>
+        <h2 className="text-xl font-semibold mb-3">7. Contact us</h2>
         <p className="mb-3">
-          If you have any questions about our use of cookies or other technologies, please email us at:
-        </p>
-        <p className="mb-3">
-          <a href="mailto:privacy@timeline-example.com" className="text-blue-600 hover:underline">privacy@timeline-example.com</a>
+          If you have any questions about our use of cookies, please email us at privacy@timeline-example.com
         </p>
       </section>
       
@@ -139,11 +97,8 @@ export default function CookiePolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">1. 引言</h2>
         <p className="mb-3">
-          本 Cookie 政策解释了时间线（"我们"）如何使用 cookie 和类似技术在您访问我们的网站时识别您。
+          本 Cookie 政策解释了时间线（"我们"）如何使用 cookie 和类似技术在您访问我们的网站时存储您的偏好。
           它解释了这些技术是什么以及我们为什么使用它们，以及您控制我们使用它们的权利。
-        </p>
-        <p className="mb-3">
-          在某些情况下，我们可能会使用 cookie 收集个人信息，或者如果我们将其与其他信息结合，它会成为个人信息。
         </p>
       </section>
       
@@ -152,11 +107,6 @@ export default function CookiePolicy() {
         <p className="mb-3">
           Cookie 是当您访问网站时放置在您的计算机或移动设备上的小型数据文件。
           网站所有者广泛使用 cookie 以使其网站运行，或更有效地运行，以及提供报告信息。
-        </p>
-        <p className="mb-3">
-          由网站所有者（在本例中为时间线）设置的 cookie 称为"第一方 cookie"。由网站所有者以外的各方设置的 cookie 称为"第三方 cookie"。
-          第三方 cookie 使第三方功能或功能可以在网站上或通过网站提供（例如，如广告、交互式内容和分析）。
-          设置这些第三方 cookie 的各方可以在您访问相关网站以及访问某些其他网站时识别您的计算机。
         </p>
       </section>
       

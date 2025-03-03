@@ -14,68 +14,58 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">1. Introduction</h2>
         <p className="mb-3">
-          Welcome to Timeline. We respect your privacy and are committed to protecting your personal data. 
-          This privacy policy will inform you about how we look after your personal data when you visit our website 
-          and tell you about your privacy rights and how the law protects you.
+          Welcome to Timeline. We respect your privacy and are committed to protecting it. This privacy policy explains how we handle any information when you visit our website.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">2. Data We Collect</h2>
+        <h2 className="text-xl font-semibold mb-3">2. Information We Collect</h2>
         <p className="mb-3">
-          We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
+          We collect very minimal information. We do not collect any personal data. The only information we store are your preferences:
         </p>
         <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2"><strong>Identity Data</strong> includes first name, last name, username or similar identifier.</li>
-          <li className="mb-2"><strong>Contact Data</strong> includes email address.</li>
-          <li className="mb-2"><strong>Technical Data</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website.</li>
-          <li className="mb-2"><strong>Usage Data</strong> includes information about how you use our website and services.</li>
-          <li className="mb-2"><strong>Preference Data</strong> includes your preferences in receiving marketing from us and our third parties and your communication preferences.</li>
+          <li className="mb-2">Language preference (English or Chinese)</li>
+          <li className="mb-2">Timeline view layout preference (left-aligned or centered)</li>
+        </ul>
+        <p className="mb-3">
+          These preferences are stored locally in your browser using cookies and local storage. This information is not transmitted to our servers and remains on your device.
+        </p>
+      </section>
+      
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-3">3. How We Use Your Information</h2>
+        <p className="mb-3">
+          The stored preferences are used solely to enhance your browsing experience by:
+        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">Displaying the website in your preferred language</li>
+          <li className="mb-2">Maintaining your preferred timeline view layout</li>
         </ul>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. How We Use Your Data</h2>
+        <h2 className="text-xl font-semibold mb-3">4. Data Sharing and Third Parties</h2>
         <p className="mb-3">
-          We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
-        </p>
-        <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2">To provide and maintain our service, including to monitor the usage of our service.</li>
-          <li className="mb-2">To manage your account and registration as a user of the service.</li>
-          <li className="mb-2">To contact you by email regarding updates or informative communications related to the functionalities, products or contracted services.</li>
-          <li className="mb-2">To provide you with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless you have opted not to receive such information.</li>
-        </ul>
-      </section>
-      
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">4. Data Retention</h2>
-        <p className="mb-3">
-          We will only retain your personal data for as long as reasonably necessary to fulfill the purposes we collected it for, 
-          including for the purposes of satisfying any legal, regulatory, tax, accounting or reporting requirements.
+          We do not share any information with third parties. We do not use any third-party analytics, tracking, or advertising services.
         </p>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">5. Your Rights</h2>
         <p className="mb-3">
-          Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:
+          You can control your preferences at any time:
         </p>
         <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2">Request access to your personal data.</li>
-          <li className="mb-2">Request correction of your personal data.</li>
-          <li className="mb-2">Request erasure of your personal data.</li>
-          <li className="mb-2">Object to processing of your personal data.</li>
-          <li className="mb-2">Request restriction of processing your personal data.</li>
-          <li className="mb-2">Request transfer of your personal data.</li>
-          <li className="mb-2">Right to withdraw consent.</li>
+          <li className="mb-2">Change language using the language switcher</li>
+          <li className="mb-2">Change timeline view using the layout toggle</li>
+          <li className="mb-2">Clear your browser cookies and local storage to reset all preferences</li>
         </ul>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookies</h2>
         <p className="mb-3">
-          We use cookies and similar tracking technologies to track the activity on our service and store certain information. 
-          For more information about the cookies we use, please see our <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
+          We use cookies only to store your preferences. For more information about the cookies we use, please see our <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
         </p>
       </section>
       
@@ -90,10 +80,7 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">8. Contact Us</h2>
         <p className="mb-3">
-          If you have any questions about this Privacy Policy, you can contact us at:
-        </p>
-        <p className="mb-3">
-          <a href="mailto:privacy@timeline-example.com" className="text-blue-600 hover:underline">privacy@timeline-example.com</a>
+          If you have any questions about this Privacy Policy, you can contact us at privacy@timeline-example.com
         </p>
       </section>
       
@@ -118,59 +105,51 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">2. 我们收集的数据</h2>
         <p className="mb-3">
-          我们可能收集、使用、存储和传输有关您的不同类型的个人数据，我们将其分组如下：
+          我们收集非常少量的信息。我们不收集任何个人数据。我们存储的唯一信息是您的偏好：
         </p>
         <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2"><strong>身份数据</strong> 包括名字、姓氏、用户名或类似标识符。</li>
-          <li className="mb-2"><strong>联系数据</strong> 包括电子邮件地址。</li>
-          <li className="mb-2"><strong>技术数据</strong> 包括互联网协议（IP）地址、您的登录数据、浏览器类型和版本、时区设置和位置、浏览器插件类型和版本、操作系统和平台，以及您用于访问本网站的设备上的其他技术。</li>
-          <li className="mb-2"><strong>使用数据</strong> 包括有关您如何使用我们的网站和服务的信息。</li>
-          <li className="mb-2"><strong>偏好数据</strong> 包括您接收我们和第三方营销信息的偏好以及您的通信偏好。</li>
+          <li className="mb-2">语言偏好（英语或中文）</li>
+          <li className="mb-2">时间线视图布局偏好（左对齐或居中）</li>
+        </ul>
+        <p className="mb-3">
+          这些偏好存储在您的浏览器中，使用cookies和本地存储。此信息不会传输到我们的服务器，并保留在您的设备上。
+        </p>
+      </section>
+      
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-3">3. 我们如何使用您的信息</h2>
+        <p className="mb-3">
+          存储的偏好仅用于增强您的浏览体验，通过：
+        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">在您首选的语言中显示网站</li>
+          <li className="mb-2">保持您首选的时间线视图布局</li>
         </ul>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. 我们如何使用您的数据</h2>
+        <h2 className="text-xl font-semibold mb-3">4. 数据共享和第三方</h2>
         <p className="mb-3">
-          我们只会在法律允许的情况下使用您的个人数据。最常见的情况下，我们将在以下情况下使用您的个人数据：
-        </p>
-        <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2">提供和维护我们的服务，包括监控我们服务的使用情况。</li>
-          <li className="mb-2">管理您作为服务用户的账户和注册。</li>
-          <li className="mb-2">通过电子邮件联系您，告知与功能、产品或已签约服务相关的更新或信息通讯。</li>
-          <li className="mb-2">向您提供有关我们提供的其他商品、服务和活动的新闻、特别优惠和一般信息，这些信息与您已经购买或询问的信息类似，除非您选择不接收此类信息。</li>
-        </ul>
-      </section>
-      
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">4. 数据保留</h2>
-        <p className="mb-3">
-          我们只会在合理必要的时间内保留您的个人数据，以实现我们收集它的目的，
-          包括满足任何法律、监管、税务、会计或报告要求的目的。
+          我们不会与第三方共享任何信息。我们不使用任何第三方分析、跟踪或广告服务。
         </p>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">5. 您的权利</h2>
         <p className="mb-3">
-          在某些情况下，您根据数据保护法对您的个人数据拥有权利，包括：
+          您可以随时控制您的偏好：
         </p>
         <ul className="list-disc pl-6 mb-3">
-          <li className="mb-2">请求访问您的个人数据。</li>
-          <li className="mb-2">请求更正您的个人数据。</li>
-          <li className="mb-2">请求删除您的个人数据。</li>
-          <li className="mb-2">反对处理您的个人数据。</li>
-          <li className="mb-2">请求限制处理您的个人数据。</li>
-          <li className="mb-2">请求转移您的个人数据。</li>
-          <li className="mb-2">撤回同意的权利。</li>
+          <li className="mb-2">使用语言切换器更改语言</li>
+          <li className="mb-2">使用布局切换更改时间线视图</li>
+          <li className="mb-2">清除浏览器cookies和本地存储以重置所有偏好</li>
         </ul>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Cookie</h2>
         <p className="mb-3">
-          我们使用Cookie和类似的跟踪技术来跟踪我们服务上的活动并存储某些信息。
-          有关我们使用的Cookie的更多信息，请参阅我们的 <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie政策</Link>。
+          我们仅使用cookies来存储您的偏好。有关我们使用的Cookie的更多信息，请参阅我们的 <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie政策</Link>。
         </p>
       </section>
       

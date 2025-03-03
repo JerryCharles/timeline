@@ -14,111 +14,90 @@ export default function TermsOfService() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">1. Introduction</h2>
         <p className="mb-3">
-          Welcome to Timeline. These Terms of Service ("Terms") govern your use of our website and services. 
+          Welcome to Timeline. These Terms of Service ("Terms") govern your use of our website. 
           By accessing or using our service, you agree to be bound by these Terms. If you disagree with any part of the terms, 
           you may not access the service.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">2. Use of Service</h2>
+        <h2 className="text-xl font-semibold mb-3">2. Service Description</h2>
         <p className="mb-3">
-          Our service allows you to create, view, and share timelines of events. You are responsible for your use of the service 
-          and any content you provide, including compliance with applicable laws, rules, and regulations.
+          Our service provides a platform for viewing and exploring timelines of events. The service includes:
         </p>
-        <p className="mb-3">
-          You may not use our service for any illegal or unauthorized purpose nor may you, in the use of the service, 
-          violate any laws in your jurisdiction (including but not limited to copyright laws).
-        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">Viewing timeline events in either left-aligned or centered layout</li>
+          <li className="mb-2">Accessing content in English or Chinese language</li>
+          <li className="mb-2">Viewing event details and related information</li>
+        </ul>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. User Accounts</h2>
+        <h2 className="text-xl font-semibold mb-3">3. User Responsibilities</h2>
         <p className="mb-3">
-          When you create an account with us, you must provide information that is accurate, complete, and current at all times. 
-          Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our service.
+          When using our service, you agree to:
         </p>
-        <p className="mb-3">
-          You are responsible for safeguarding the password that you use to access the service and for any activities or actions under your password.
-        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">Use the service in accordance with these Terms and applicable laws and regulations</li>
+          <li className="mb-2">Not attempt to gain unauthorized access to any portion of the service</li>
+          <li className="mb-2">Not interfere with or disrupt the service or servers</li>
+          <li className="mb-2">Not use the service for any unlawful purpose</li>
+        </ul>
       </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">4. Intellectual Property</h2>
         <p className="mb-3">
-          The service and its original content, features, and functionality are and will remain the exclusive property of Timeline and its licensors. 
-          The service is protected by copyright, trademark, and other laws of both the United States and foreign countries.
-        </p>
-        <p className="mb-3">
-          Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Timeline.
+          The service and its original content, features, and functionality are owned by Timeline and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">5. User Content</h2>
+        <h2 className="text-xl font-semibold mb-3">5. Privacy and Cookies</h2>
         <p className="mb-3">
-          Our service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, 
-          or other material ("Content"). You are responsible for the Content that you post on or through the service, including its legality, 
-          reliability, and appropriateness.
-        </p>
-        <p className="mb-3">
-          By posting Content on or through the service, you represent and warrant that: (i) the Content is yours (you own it) or you have 
-          the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your Content on or 
-          through the service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person.
+          Our service uses cookies only to store your language and timeline view preferences. For more information about how we handle your privacy and use cookies, please refer to our <Link href="/privacy-policy" className="text-blue-600 hover:underline">Privacy Policy</Link> and <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">6. Limitation of Liability</h2>
+        <h2 className="text-xl font-semibold mb-3">6. Links to Other Websites</h2>
         <p className="mb-3">
-          In no event shall Timeline, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, 
-          incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other 
-          intangible losses, resulting from (i) your access to or use of or inability to access or use the service; (ii) any conduct or content 
-          of any third party on the service; (iii) any content obtained from the service; and (iv) unauthorized access, use or alteration of your 
-          transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not 
-          we have been informed of the possibility of such damage.
+          Our service may contain links to third-party websites that are not owned or controlled by Timeline. Timeline has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">7. Disclaimer</h2>
+        <h2 className="text-xl font-semibold mb-3">7. Termination</h2>
         <p className="mb-3">
-          Your use of the service is at your sole risk. The service is provided on an "AS IS" and "AS AVAILABLE" basis. The service is provided 
-          without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, 
-          fitness for a particular purpose, non-infringement or course of performance.
+          We may terminate or suspend your access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">8. Governing Law</h2>
+        <h2 className="text-xl font-semibold mb-3">8. Disclaimer</h2>
         <p className="mb-3">
-          These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.
-        </p>
-        <p className="mb-3">
-          Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these 
-          Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.
+          The service is provided on an "AS IS" and "AS AVAILABLE" basis. Timeline makes no warranties, whether express or implied, as to the operation of the service or any information, content, materials, or products included on or otherwise made available to you through the service.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">9. Changes to Terms</h2>
+        <h2 className="text-xl font-semibold mb-3">9. Limitation of Liability</h2>
         <p className="mb-3">
-          We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to 
-          provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
-        </p>
-        <p className="mb-3">
-          By continuing to access or use our service after those revisions become effective, you agree to be bound by the revised terms. 
-          If you do not agree to the new terms, please stop using the service.
+          In no event shall Timeline be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">10. Contact Us</h2>
+        <h2 className="text-xl font-semibold mb-3">10. Changes to Terms</h2>
         <p className="mb-3">
-          If you have any questions about these Terms, please contact us at:
+          We reserve the right to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect.
         </p>
+      </section>
+      
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-3">11. Contact Us</h2>
         <p className="mb-3">
-          <a href="mailto:terms@timeline-example.com" className="text-blue-600 hover:underline">terms@timeline-example.com</a>
+          If you have any questions about these Terms, please contact us at terms@timeline-example.com
         </p>
       </section>
       
@@ -141,25 +120,28 @@ export default function TermsOfService() {
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">2. 服务使用</h2>
+        <h2 className="text-xl font-semibold mb-3">2. 服务描述</h2>
         <p className="mb-3">
-          我们的服务允许您创建、查看和分享事件时间线。您对服务的使用以及您提供的任何内容负责，
-          包括遵守适用的法律、规则和法规。
+          我们的服务提供了一个平台，用于查看和探索事件时间线。服务包括：
         </p>
-        <p className="mb-3">
-          您不得将我们的服务用于任何非法或未经授权的目的，也不得在使用服务时违反您所在司法管辖区的任何法律（包括但不限于版权法）。
-        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">查看时间线事件，无论是左对齐还是居中布局</li>
+          <li className="mb-2">访问英文或中文内容</li>
+          <li className="mb-2">查看事件详情及相关信息</li>
+        </ul>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. 用户账户</h2>
+        <h2 className="text-xl font-semibold mb-3">3. 用户责任</h2>
         <p className="mb-3">
-          当您在我们这里创建账户时，您必须提供始终准确、完整和最新的信息。
-          未能这样做构成违反条款，可能导致您在我们服务上的账户立即终止。
+          使用我们的服务时，您同意：
         </p>
-        <p className="mb-3">
-          您负责保护您用于访问服务的密码，以及在您的密码下进行的任何活动或操作。
-        </p>
+        <ul className="list-disc pl-6 mb-3">
+          <li className="mb-2">按照这些条款和适用法律和法规使用服务</li>
+          <li className="mb-2">不要尝试获取对服务的任何部分的未经授权访问</li>
+          <li className="mb-2">不要干扰或中断服务或服务器</li>
+          <li className="mb-2">不要将服务用于任何非法目的</li>
+        </ul>
       </section>
       
       <section className="mb-8">
@@ -174,48 +156,44 @@ export default function TermsOfService() {
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">5. 用户内容</h2>
+        <h2 className="text-xl font-semibold mb-3">5. 隐私和Cookies</h2>
         <p className="mb-3">
-          我们的服务允许您发布、链接、存储、共享和以其他方式提供某些信息、文本、图形、视频或其他材料（"内容"）。
-          您对您在服务上或通过服务发布的内容负责，包括其合法性、可靠性和适当性。
-        </p>
-        <p className="mb-3">
-          通过在服务上或通过服务发布内容，您表示并保证：(i) 内容是您的（您拥有它）或您有权使用它并授予我们这些条款中提供的权利和许可，
-          以及 (ii) 您在服务上或通过服务发布的内容不侵犯任何人的隐私权、宣传权、版权、合同权或任何其他权利。
+          我们的服务仅使用cookies来存储您的语言和时间线视图偏好。有关我们如何处理您的隐私和使用cookies的更多信息，请参阅我们的<Link href="/privacy-policy" className="text-blue-600 hover:underline">隐私政策</Link>和<Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie政策</Link>。
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">6. 责任限制</h2>
+        <h2 className="text-xl font-semibold mb-3">6. 其他网站的链接</h2>
         <p className="mb-3">
-          在任何情况下，时间线及其董事、员工、合作伙伴、代理商、供应商或附属机构均不对任何间接、偶然、特殊、后果性或惩罚性损害负责，
-          包括但不限于利润损失、数据、使用、商誉或其他无形损失，由于 (i) 您访问或使用或无法访问或使用服务；(ii) 服务上任何第三方的任何行为或内容；
-          (iii) 从服务获得的任何内容；以及 (iv) 未经授权访问、使用或更改您的传输或内容，无论是基于保证、合同、侵权（包括疏忽）或任何其他法律理论，
-          无论我们是否已被告知此类损害的可能性。
+          我们的服务可能包含指向第三方网站的链接，这些网站不是由时间线拥有或控制的。时间线不对这些第三方网站的内容、隐私政策或实践负责。
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">7. 免责声明</h2>
+        <h2 className="text-xl font-semibold mb-3">7. 终止</h2>
         <p className="mb-3">
-          您使用服务的风险由您自行承担。服务按"原样"和"可用"基础提供。服务不提供任何种类的保证，无论是明示的还是暗示的，
+          我们可能会立即终止或暂停您对我们服务的访问，而无需事先通知或承担任何责任，原因如下：
+        </p>
+      </section>
+      
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-3">8. 免责声明</h2>
+        <p className="mb-3">
+          服务按"原样"和"可用"基础提供。时间线不提供任何种类的保证，无论是明示的还是暗示的，
           包括但不限于适销性、特定用途适用性、非侵权或性能过程的暗示保证。
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">8. 适用法律</h2>
+        <h2 className="text-xl font-semibold mb-3">9. 责任限制</h2>
         <p className="mb-3">
-          这些条款应受美国法律管辖并按其解释，不考虑其冲突法规定。
-        </p>
-        <p className="mb-3">
-          我们未能执行这些条款的任何权利或规定不会被视为放弃这些权利。如果这些条款的任何规定被法院认定为无效或不可执行，
-          这些条款的其余规定将继续有效。
+          在任何情况下，时间线不对任何间接、偶然、特殊、后果性或惩罚性损害负责，
+          包括但不限于利润损失、数据、使用、商誉或其他无形损失，由于您访问或使用或无法访问或使用服务。
         </p>
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">9. 条款变更</h2>
+        <h2 className="text-xl font-semibold mb-3">10. 条款变更</h2>
         <p className="mb-3">
           我们保留自行决定随时修改或替换这些条款的权利。如果修订是重大的，我们将尝试在任何新条款生效前至少提供30天的通知。
           什么构成重大变更将由我们自行决定。
@@ -227,12 +205,9 @@ export default function TermsOfService() {
       </section>
       
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">10. 联系我们</h2>
+        <h2 className="text-xl font-semibold mb-3">11. 联系我们</h2>
         <p className="mb-3">
-          如果您对这些条款有任何疑问，请联系我们：
-        </p>
-        <p className="mb-3">
-          <a href="mailto:terms@timeline-example.com" className="text-blue-600 hover:underline">terms@timeline-example.com</a>
+          如果您对这些条款有任何疑问，请联系我们：terms@timeline-example.com
         </p>
       </section>
       

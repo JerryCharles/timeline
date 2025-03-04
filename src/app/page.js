@@ -1,7 +1,6 @@
-import { redirect } from 'next/navigation';
+import LangHomePageClient from './[lang]/client-page';
 
-// This is a simple server component that redirects to the appropriate language
+// Server component that renders the English version by default
 export default function RootPage() {
-  // Redirect to the default language (English)
-  redirect('/en');
+  return <LangHomePageClient params={{ lang: 'en' }} />;
 } 

@@ -60,7 +60,12 @@ export function middleware(request) {
   // Get the preferred locale
   const locale = getLocale(request);
   
-  // Redirect to the locale-prefixed path
+  // Only add locale prefix for non-English languages
+  if (locale === 'en') {
+    return;
+  }
+  
+  // Redirect to the locale-prefixed path for non-English languages
   const newUrl = new URL(`/${locale}${pathname}`, request.url);
   newUrl.search = request.nextUrl.search;
   

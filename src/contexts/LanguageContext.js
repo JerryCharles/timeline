@@ -85,6 +85,7 @@ export function LanguageProvider({ children, initialLanguage }) {
   return (
     <LanguageContext.Provider value={{ 
       language, 
+      setLanguage,
       toggleLanguage, 
       getLanguageLabel,
       getLanguageIcon

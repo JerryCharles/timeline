@@ -68,20 +68,20 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children, params }) {
-  const { lang } = params;
+export default async function RootLayout({ children, params }) {
+  const { lang } = await params;
   
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}>
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialLanguage={lang}>
             <div className="flex flex-col min-h-screen">
-              <Header language={lang} />
+              <Header />
               <main className="flex-grow">
                 {children}
               </main>
-              <Footer language={lang} />
+              <Footer />
             </div>
           </LanguageProvider>
         </ThemeProvider>

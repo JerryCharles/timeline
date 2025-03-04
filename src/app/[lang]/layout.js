@@ -3,7 +3,6 @@ import "../globals.css";
 import Footer from "../../components/Footer";
 import { LanguageProvider } from "../../contexts/LanguageContext";
 import { ThemeProvider } from "../../contexts/ThemeContext";
-import Header from "../../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -77,7 +76,6 @@ export default async function RootLayout({ children, params }) {
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang}>
             <div className="flex flex-col min-h-screen">
-              <Header />
               <main className="flex-grow">
                 {children}
               </main>

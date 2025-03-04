@@ -19,6 +19,12 @@ const nextConfig = {
   },
   swcMinify: true,
   output: 'standalone',
+  distDir: '.next',
+  experimental: {
+    // Reduce build size
+    optimizeCss: false,
+    optimizePackageImports: ['@heroicons/react'],
+  },
 };
 
 export default nextConfig;

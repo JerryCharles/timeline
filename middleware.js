@@ -47,16 +47,21 @@ export function middleware(request) {
     return;
   }
 
+  // Handle root path specifically
+  if (pathname === '/') {
+    const preferredLocale = getLocale(request);
+    const url = new URL(`/${preferredLocale}`, request.url);
+    return NextResponse.redirect(url);
+  }
+
   // Get current locale from URL path
   const pathnameLocale = locales.find(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  // Get the preferred locale
-  const preferredLocale = getLocale(request);
-  
   // If URL has no locale, redirect to the preferred locale
   if (!pathnameLocale) {
+    const preferredLocale = getLocale(request);
     const url = new URL(`/${preferredLocale}${pathname}`, request.url);
     url.search = request.nextUrl.search;
     return NextResponse.redirect(url);

@@ -67,8 +67,21 @@ export function LanguageProvider({ children, initialLanguage }) {
     
     // Update URL to reflect language change
     const currentPath = window.location.pathname;
+    
+    // Handle root path case
+    if (currentPath === '/') {
+      router.push(`/${newLanguage}`);
+      return;
+    }
+    
+    // Handle normal language switch
     const newPath = currentPath.replace(/^\/[^/]+/, `/${newLanguage}`);
-    router.push(newPath);
+    if (newPath === currentPath) {
+      // If no language prefix found, add it
+      router.push(`/${newLanguage}${currentPath}`);
+    } else {
+      router.push(newPath);
+    }
   };
 
   // Get language label

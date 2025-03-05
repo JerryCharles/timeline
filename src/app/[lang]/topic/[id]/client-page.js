@@ -8,6 +8,7 @@ import Timeline from '../../../../components/Timeline';
 import { useLanguage, LANGUAGES } from '../../../../contexts/LanguageContext';
 import { getTranslation } from '../../../../translations';
 import { getTopicDetails } from '../../../../services/api';
+import Cookies from 'js-cookie';
 
 function TopicDetailContent({ topicData, error, lang }) {
   const { language } = useLanguage();
@@ -15,6 +16,7 @@ function TopicDetailContent({ topicData, error, lang }) {
   const router = useRouter();
   const [countdown, setCountdown] = useState(3);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [showLanguageTip, setShowLanguageTip] = useState(false);
 
   // Handle countdown
   useEffect(() => {
@@ -40,6 +42,14 @@ function TopicDetailContent({ topicData, error, lang }) {
       router.push(`/${currentLang}`);
     }
   }, [shouldRedirect, router, currentLang]);
+
+  useEffect(() => {
+    // Check for language mismatch
+    const cookieLocale = Cookies.get('NEXT_LOCALE');
+    if (cookieLocale && cookieLocale !== currentLang) {
+      setShowLanguageTip(true);
+    }
+  }, [currentLang]);
 
   if (!topicData || error) {
     return (
@@ -101,8 +111,51 @@ function TopicDetailContent({ topicData, error, lang }) {
     return topic.content || '';
   };
 
+  if (!topic) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">{getTranslation('topic.notice', currentLang)} </strong>
+          <span className="block sm:inline">
+            {error || getTranslation('topic.topicNotFound', currentLang)}
+          </span>
+          <div className="mt-2">
+            <p>
+              {getTranslation('topic.redirectingIn', currentLang)} {countdown} {getTranslation('topic.seconds', currentLang)}...
+            </p>
+          </div>
+          <Link href={`/${currentLang}`} className="mt-4 inline-block text-blue-600 hover:underline">
+            {getTranslation('topic.returnToHome', currentLang)}
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {showLanguageTip && (
+        <div className="mb-4 p-4 bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <p className="text-blue-700 dark:text-blue-200">
+            {currentLang === 'en' ? (
+              <>
+                This content is available in your preferred language (繁體中文).{' '}
+                <Link href={`/zh-TW/topic/${topic.topicID}`} className="underline hover:text-blue-800 dark:hover:text-blue-100">
+                  Click here to switch
+                </Link>
+              </>
+            ) : (
+              <>
+                This content is available in your preferred language (English).{' '}
+                <Link href={`/en/topic/${topic.topicID}`} className="underline hover:text-blue-800 dark:hover:text-blue-100">
+                  Click here to switch
+                </Link>
+              </>
+            )}
+          </p>
+        </div>
+      )}
+
       <div className="mb-8 flex items-center justify-between relative">
         <Link href={`/${currentLang}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 absolute left-0 z-10">
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -15,31 +15,18 @@ function getLocale(request) {
   // Get the locale from the Accept-Language header
   const acceptLanguage = request.headers.get('Accept-Language');
   if (acceptLanguage) {
-    // Parse the Accept-Language header
     const acceptedLocales = acceptLanguage.split(',')
-      .map(locale => {
-        const [lang, q = 'q=1.0'] = locale.trim().split(';');
-        const quality = parseFloat(q.split('=')[1]);
-        return { lang, quality };
-      })
-      .sort((a, b) => b.quality - a.quality);
+      .map(locale => locale.split(';')[0].trim())
+      .map(locale => locale.toLowerCase());
 
-    // Find the first accepted locale that is supported
-    for (const { lang } of acceptedLocales) {
-      // Check for exact match
-      if (locales.includes(lang)) {
-        return lang;
-      }
-      
-      // Check for language match (e.g., 'zh-TW' matches 'zh')
-      const langPrefix = lang.split('-')[0];
-      const matchingLocale = locales.find(locale => 
-        locale.startsWith(langPrefix + '-') || locale === langPrefix
-      );
-      
-      if (matchingLocale) {
-        return matchingLocale;
-      }
+    // Check for Chinese variants first
+    if (acceptedLocales.some(locale => locale.startsWith('zh'))) {
+      return 'zh-TW';
+    }
+
+    // Check for English
+    if (acceptedLocales.some(locale => locale.startsWith('en'))) {
+      return 'en';
     }
   }
 
@@ -50,26 +37,41 @@ function getLocale(request) {
 export function middleware(request) {
   const pathname = request.nextUrl.pathname;
   
-  // Check if the pathname already has a locale
-  const pathnameHasLocale = locales.some(
-    locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-  
-  if (pathnameHasLocale) return;
-  
-  // Get the preferred locale
-  const locale = getLocale(request);
-  
-  // Only add locale prefix for non-English languages
-  if (locale === 'en') {
+  // Skip for static files and api routes
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.includes('/static/') ||
+    pathname.includes('.') // Skip files with extensions
+  ) {
     return;
   }
+
+  // Get current locale from URL path
+  const pathnameLocale = locales.find(
+    locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  // Get the preferred locale
+  const preferredLocale = getLocale(request);
   
-  // Redirect to the locale-prefixed path for non-English languages
-  const newUrl = new URL(`/${locale}${pathname}`, request.url);
-  newUrl.search = request.nextUrl.search;
-  
-  return NextResponse.redirect(newUrl);
+  // If URL has no locale, redirect to the preferred locale
+  if (!pathnameLocale) {
+    const url = new URL(`/${preferredLocale}${pathname}`, request.url);
+    url.search = request.nextUrl.search;
+    return NextResponse.redirect(url);
+  }
+
+  // If URL locale doesn't match cookie locale, show language switch tip
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookieLocale && cookieLocale !== pathnameLocale) {
+    const response = NextResponse.next();
+    response.headers.set('x-language-mismatch', 'true');
+    response.headers.set('x-preferred-language', cookieLocale);
+    return response;
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

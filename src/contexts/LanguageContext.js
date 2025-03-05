@@ -1,6 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 // Define available languages
 export const LANGUAGES = {
@@ -11,63 +13,62 @@ export const LANGUAGES = {
 // Create the context
 const LanguageContext = createContext();
 
+// Hook to use the language context
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
+
 // Create a provider component
 export function LanguageProvider({ children, initialLanguage }) {
   const [language, setLanguage] = useState(initialLanguage || LANGUAGES.EN);
-  const [hasUserChangedLanguage, setHasUserChangedLanguage] = useState(!!initialLanguage);
+  const router = useRouter();
 
-  // Initialize language from localStorage or detect browser language
   useEffect(() => {
-    // Check if we're in a browser environment (to avoid SSR issues)
-    if (typeof window !== 'undefined') {
-      // First check if there's a saved preference in localStorage
-      const savedLanguage = localStorage.getItem('language');
-      
-      if (savedLanguage) {
-        console.log('Using saved language preference:', savedLanguage);
-        setLanguage(savedLanguage);
-        setHasUserChangedLanguage(true);
-      } else if (!hasUserChangedLanguage) {
-        // If no saved preference, detect browser language
-        detectBrowserLanguage();
+    // Check for language mismatch header
+    const checkLanguageMismatch = async () => {
+      try {
+        const response = await fetch(window.location.href);
+        const mismatch = response.headers.get('x-language-mismatch');
+        const preferredLanguage = response.headers.get('x-preferred-language');
+        
+        if (mismatch === 'true' && preferredLanguage) {
+          const currentPath = window.location.pathname;
+          const newPath = currentPath.replace(/^\/[^/]+/, `/${preferredLanguage}`);
+          
+          // Show language switch tip
+          const shouldSwitch = window.confirm(
+            `Would you like to switch to your preferred language (${
+              preferredLanguage === LANGUAGES.EN ? 'English' : '繁體中文'
+            })?`
+          );
+          
+          if (shouldSwitch) {
+            router.push(newPath);
+          }
+        }
+      } catch (error) {
+        console.error('Error checking language mismatch:', error);
       }
-    }
-  }, [hasUserChangedLanguage]);
+    };
 
-  // Function to detect browser language
-  const detectBrowserLanguage = () => {
-    try {
-      // Get browser language
-      const browserLang = navigator.language || navigator.userLanguage;
-      console.log('Detected browser language:', browserLang);
-      
-      // Check if it's Chinese
-      if (browserLang && (browserLang.toLowerCase().startsWith('zh'))) {
-        console.log('Setting language to Traditional Chinese based on browser language');
-        setLanguage(LANGUAGES.ZH_TW);
-      } else {
-        // Default to English for all other languages
-        console.log('Setting language to English based on browser language');
-        setLanguage(LANGUAGES.EN);
-      }
-    } catch (error) {
-      console.error('Error detecting browser language:', error);
-      // Default to English in case of error
-      setLanguage(LANGUAGES.EN);
-    }
-  };
+    checkLanguageMismatch();
+  }, [router]);
 
   // Toggle between languages
   const toggleLanguage = () => {
     const newLanguage = language === LANGUAGES.EN ? LANGUAGES.ZH_TW : LANGUAGES.EN;
-    setLanguage(newLanguage);
-    setHasUserChangedLanguage(true);
     
-    // Save to localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', newLanguage);
-      console.log('Saved language preference:', newLanguage);
-    }
+    // Save to cookie
+    Cookies.set('NEXT_LOCALE', newLanguage, { expires: 365 });
+    
+    // Update URL to reflect language change
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.replace(/^\/[^/]+/, `/${newLanguage}`);
+    router.push(newPath);
   };
 
   // Get language label
@@ -93,13 +94,4 @@ export function LanguageProvider({ children, initialLanguage }) {
       {children}
     </LanguageContext.Provider>
   );
-}
-
-// Custom hook to use the language context
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
 } 

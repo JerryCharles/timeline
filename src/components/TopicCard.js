@@ -46,8 +46,29 @@ const getSummary = (topic, language) => {
 export default function TopicCard({ topic }) {
   const { language } = useLanguage();
 
+  // Add structured data
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": getTitle(topic, language),
+    "description": getSummary(topic, language),
+    "image": topic.image,
+    "dateModified": topic.updateTime,
+    "inLanguage": language,
+    "author": {
+      "@type": "Organization",
+      "name": "Timeline"
+    }
+  };
+
   return (
     <Link href={`/${language}/topic/${topic.topicID}`} className="block h-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData)
+        }}
+      />
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] h-full flex flex-col border border-gray-200 dark:border-gray-700">
         {topic.image && (
           <div className="relative h-48 flex-shrink-0">

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://3ja.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW" />
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en" />
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/topic/3</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/topic/3" />
+    <lastmod>2025-02-28T08:52:53.929Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/topic/3</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/topic/3" />
+    <lastmod>2025-02-28T08:52:53.929Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/topic/1</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/topic/1" />
+    <lastmod>2025-02-23T07:36:47.651Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/topic/1</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/topic/1" />
+    <lastmod>2025-02-23T07:36:47.651Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/topic/0</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/topic/0" />
+    <lastmod>2025-02-23T03:19:43.812Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/topic/0</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/topic/0" />
+    <lastmod>2025-02-23T03:19:43.812Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/privacy-policy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/privacy-policy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/terms-of-service</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/terms-of-service" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/terms-of-service</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/terms-of-service" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/en/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://3ja.com/zh-TW/cookie-policy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3ja.com/zh-TW/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3ja.com/en/cookie-policy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

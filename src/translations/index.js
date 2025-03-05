@@ -87,6 +87,18 @@ const translations = {
     learnMore: {
       [LANGUAGES.EN]: 'Learn More',
       [LANGUAGES.ZH_TW]: '了解更多'
+    },
+    labelsFilter: {
+      [LANGUAGES.EN]: 'Filter by Labels',
+      [LANGUAGES.ZH_TW]: '標籤篩選'
+    },
+    selectDeselectAll: {
+      [LANGUAGES.EN]: 'Select/Deselect All',
+      [LANGUAGES.ZH_TW]: '全選/取消全選'
+    },
+    noLabels: {
+      [LANGUAGES.EN]: 'No labels available',
+      [LANGUAGES.ZH_TW]: '沒有可用的標籤'
     }
   },
   

@@ -153,12 +153,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                 <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
                   {getTitle(event, language)}
                 </h3>
-                <div className="mb-6 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
-                  <ReactMarkdown>
-                    {getContent(event, language)}
-                  </ReactMarkdown>
-                </div>
-                <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-between items-center mb-6">
                   <time className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500 flex items-center">
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -178,6 +173,11 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                       </svg>
                     </a>
                   )}
+                </div>
+                <div className="mt-4 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
+                  <ReactMarkdown>
+                    {getContent(event, language)}
+                  </ReactMarkdown>
                 </div>
               </div>
             </React.Fragment>

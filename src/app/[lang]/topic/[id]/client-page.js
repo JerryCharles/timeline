@@ -9,6 +9,16 @@ import { useLanguage, LANGUAGES } from '../../../../contexts/LanguageContext';
 import { getTranslation } from '../../../../translations';
 import { getTopicDetails } from '../../../../services/api';
 import Cookies from 'js-cookie';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TelegramIcon,
+  WhatsappIcon
+} from 'react-share';
 
 function TopicDetailContent({ topicData, error, lang }) {
   const { language } = useLanguage();
@@ -17,6 +27,60 @@ function TopicDetailContent({ topicData, error, lang }) {
   const [countdown, setCountdown] = useState(3);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [showLanguageTip, setShowLanguageTip] = useState(false);
+  const [selectedLabels, setSelectedLabels] = useState(new Set());
+  const [filteredEvents, setFilteredEvents] = useState([]);
+
+  // Get unique labels from events
+  const getAllLabels = (events) => {
+    const labelsSet = new Set();
+    events?.forEach(event => {
+      const labels = currentLang === LANGUAGES.ZH_TW ? event.labelsCN : event.labels;
+      labels?.forEach(label => {
+        labelsSet.add(label);
+      });
+    });
+    return Array.from(labelsSet);
+  };
+
+  // Initialize selected labels with all labels
+  useEffect(() => {
+    if (topicData?.events) {
+      const allLabels = getAllLabels(topicData.events);
+      setSelectedLabels(new Set(allLabels));
+      setFilteredEvents(topicData.events);
+    }
+  }, [topicData]);
+
+  // Filter events based on selected labels
+  const handleLabelToggle = (label) => {
+    const newSelectedLabels = new Set(selectedLabels);
+    if (newSelectedLabels.has(label)) {
+      newSelectedLabels.delete(label);
+    } else {
+      newSelectedLabels.add(label);
+    }
+    setSelectedLabels(newSelectedLabels);
+
+    // Filter events based on selected labels
+    const newFilteredEvents = topicData.events.filter(event => {
+      if (newSelectedLabels.size === 0) return true; // Show all if none selected
+      const eventLabels = currentLang === LANGUAGES.ZH_TW ? event.labelsCN : event.labels;
+      return eventLabels?.some(eventLabel => newSelectedLabels.has(eventLabel));
+    });
+    setFilteredEvents(newFilteredEvents);
+  };
+
+  // Select/Deselect all labels
+  const handleSelectAllLabels = () => {
+    const allLabels = getAllLabels(topicData.events);
+    if (selectedLabels.size === allLabels.length) {
+      setSelectedLabels(new Set());
+      setFilteredEvents([]);
+    } else {
+      setSelectedLabels(new Set(allLabels));
+      setFilteredEvents(topicData.events);
+    }
+  };
 
   // Handle countdown
   useEffect(() => {
@@ -215,6 +279,61 @@ function TopicDetailContent({ topicData, error, lang }) {
         </div>
       </div>
 
+      {/* Share Section */}
+      <div className="mb-6">
+        <div className="flex items-center justify-center space-x-4">
+          <FacebookShareButton url={typeof window !== 'undefined' ? window.location.href : ''}>
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+          <TwitterShareButton url={typeof window !== 'undefined' ? window.location.href : ''}>
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
+          <TelegramShareButton url={typeof window !== 'undefined' ? window.location.href : ''}>
+            <TelegramIcon size={32} round />
+          </TelegramShareButton>
+          <WhatsappShareButton url={typeof window !== 'undefined' ? window.location.href : ''}>
+            <WhatsappIcon size={32} round />
+          </WhatsappShareButton>
+        </div>
+      </div>
+
+      {/* Labels Filter Section */}
+      <div className="mb-6">
+        <div className="flex flex-col space-y-2">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {getTranslation('topic.labelsFilter', currentLang)}
+            </h3>
+            <button
+              onClick={handleSelectAllLabels}
+              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              {getTranslation('topic.selectDeselectAll', currentLang)}
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {getAllLabels(topicData?.events || []).map((label) => (
+              <button
+                key={label}
+                onClick={() => handleLabelToggle(label)}
+                className={`px-3 py-1 rounded-full text-sm ${
+                  selectedLabels.has(label)
+                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                } hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors`}
+              >
+                {label}
+              </button>
+            ))}
+            {getAllLabels(topicData?.events || []).length === 0 && (
+              <p className="text-gray-500 dark:text-gray-400">
+                {getTranslation('topic.noLabels', currentLang)}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Timeline Section */}
       <div className="mb-12">
         <div className="flex justify-between items-center mb-6">
@@ -224,8 +343,8 @@ function TopicDetailContent({ topicData, error, lang }) {
           <div id="timeline-view-switcher-container"></div>
         </div>
         
-        {events.length > 0 ? (
-          <Timeline events={events} language={currentLang} showViewSwitcherInHeader={true} />
+        {filteredEvents.length > 0 ? (
+          <Timeline events={filteredEvents} language={currentLang} showViewSwitcherInHeader={true} />
         ) : (
           <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">

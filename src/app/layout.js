@@ -25,7 +25,7 @@ export const metadata = {
   authors: [{ name: "Timeline Team" }],
   creator: "Timeline Team",
   publisher: "Timeline",
-  metadataBase: new URL("https://timeline-app.com"), // Replace with your actual domain
+  metadataBase: new URL("https://3ja.com"), // Replace with your actual domain
   alternates: {
     canonical: "/",
     languages: {
@@ -36,7 +36,7 @@ export const metadata = {
   openGraph: {
     title: "Timeline - Unravel the insights",
     description: "Explore significant historical events and their impact on our world through interactive timelines.",
-    url: "https://timeline-app.com", // Replace with your actual domain
+    url: "https://3ja.com", // Replace with your actual domain
     siteName: "Timeline",
     locale: "en_US",
     type: "website",

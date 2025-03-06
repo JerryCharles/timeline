@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "../components/Footer";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import GoogleAnalytics from "../components/GoogleAnalytics.js";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +72,9 @@ export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning>
       <head>
+        {/* Google AdSense */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3676658916099310" crossOrigin="anonymous" />
+        <GoogleAnalytics />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}>
         <ThemeProvider>

@@ -252,7 +252,7 @@ function TopicDetailContent({ topicData, error, lang }) {
       </div>
 
       {/* Sponsored Content Section */}
-      <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+      {/* <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="flex items-center mb-4">
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
             {getTranslation('topic.sponsoredContent', currentLang)}
@@ -277,7 +277,7 @@ function TopicDetailContent({ topicData, error, lang }) {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Share Section */}
       <div className="mb-6">

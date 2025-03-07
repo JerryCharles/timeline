@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import GoogleAnalytics from "../components/GoogleAnalytics.js";
+import CookieConsent from "../components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,7 @@ export default function RootLayout({ children }) {
                 {children}
               </main>
               <Footer />
+              <CookieConsent />
             </div>
           </LanguageProvider>
         </ThemeProvider>

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://timeline-app.com/sitemap.xml
+Sitemap: https://3ja.com/sitemap.xml
 
 # Disallow crawling of error pages and certain paths
 Disallow: /404

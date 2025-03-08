@@ -116,6 +116,15 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
     );
   }
 
+  // Custom renderer for links
+  const customComponents = {
+    a: ({ href, children, ...props }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
+      </a>
+    ),
+  };
+
   return (
     <div>
       {/* Render the view switcher in the header using a portal if showViewSwitcherInHeader is true */}
@@ -144,7 +153,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
         <div className="relative border-l border-gray-200 dark:border-gray-700 ml-3">
           {events.map((event, index) => (
             <React.Fragment key={`event-fragment-${event.eventID || event.id || index}-${index}`}>
-              <div className={`mb-10 ml-6 pb-6 border-b border-gray-100 dark:border-gray-800 ${getEventBackgroundClass(event)} rounded-lg p-4`}>
+              <div className={`mb-3 ml-6 pb-6 border-b border-gray-100 dark:border-gray-800 ${getEventBackgroundClass(event)} rounded-lg p-4`}>
                 <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                   <svg className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
@@ -153,7 +162,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                 <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
                   {getTitle(event, language)}
                 </h3>
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-2">
                   <time className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500 flex items-center">
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -174,8 +183,8 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                     </a>
                   )}
                 </div>
-                <div className="mt-4 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
-                  <ReactMarkdown>
+                <div className="mt-2 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
+                  <ReactMarkdown components={customComponents}>
                     {getContent(event, language)}
                   </ReactMarkdown>
                 </div>

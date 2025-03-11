@@ -4,7 +4,7 @@
 
 // API Configuration
 export const API = {
-  BASE_URL: 'https://timeline-833534357674.us-central1.run.app',
+  BASE_URL: 'https://tl-api.3ja.com',
   ENDPOINTS: {
     GET_TOPICS: '',  // Base URL is used directly
   },

@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useLanguage, LANGUAGES } from '../contexts/LanguageContext';
 
 // Format date from timestamp
@@ -84,9 +86,13 @@ export default function TopicCard({ topic }) {
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
             {getTitle(topic, language)}
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow line-clamp-3">
-            {getSummary(topic, language)}
-          </p>
+          <div className="text-gray-600 dark:text-gray-300 mb-4 flex-grow line-clamp-3">
+            <div className="prose prose-sm max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {getSummary(topic, language)}
+              </ReactMarkdown>
+            </div>
+          </div>
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-auto">
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />

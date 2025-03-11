@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useLanguage, LANGUAGES } from '../contexts/LanguageContext';
 import { getTranslation } from '../translations';
 
@@ -48,7 +49,7 @@ const getContent = (event, language) => {
 const TimelineViewSwitcher = ({ timelineStyle, toggleTimelineStyle, language }) => (
   <button 
     onClick={toggleTimelineStyle}
-    className="flex items-center justify-center p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+    className="hidden sm:flex items-center justify-center p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
     aria-label={timelineStyle === 'left' 
       ? getTranslation('timeline.switchToCentered', language) 
       : getTranslation('timeline.switchToLeft', language)}
@@ -184,7 +185,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                   )}
                 </div>
                 <div className="mt-2 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
-                  <ReactMarkdown components={customComponents}>
+                  <ReactMarkdown components={customComponents} remarkPlugins={[remarkGfm]}>
                     {getContent(event, language)}
                   </ReactMarkdown>
                 </div>
@@ -212,7 +213,7 @@ export default function Timeline({ events = [], showViewSwitcherInHeader = false
                         {getTitle(event, language)}
                       </h3>
                       <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert max-w-none">
-                        <ReactMarkdown>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {getContent(event, language)}
                         </ReactMarkdown>
                       </div>

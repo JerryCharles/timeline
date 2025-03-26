@@ -1,4 +1,4 @@
-name = "topic-events-app"
+name = "timeline"
 compatibility_date = "2025-03-26"
 compatibility_flags = ["nodejs_compat"]
 

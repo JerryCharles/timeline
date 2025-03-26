@@ -1,0 +1,8 @@
+name = "topic-events-app"
+compatibility_date = "2025-03-26"
+compatibility_flags = ["nodejs_compat"]
+
+main = ".next/standalone/server.js"
+
+[site]
+bucket = ".next/static"

@@ -2,7 +2,7 @@ name = "timeline"
 compatibility_date = "2025-03-26"
 compatibility_flags = ["nodejs_compat"]
 
-main = ".next/standalone/server.js"
+main = ".open-next/worker.js"
 
 [site]
-bucket = ".next/static"
+bucket = ".open-next/assets"

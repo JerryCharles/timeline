@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "npm run build && npx @opennextjs/cloudflare deploy",
+    "deploy": "npx @opennextjs/cloudflare build && npx wrangler deploy",
     "lint": "next lint"
   },
   "dependencies": {

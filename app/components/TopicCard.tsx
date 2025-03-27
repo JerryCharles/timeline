@@ -4,19 +4,33 @@ import { Topic } from '../services/api';
 
 interface TopicCardProps {
   topic: Topic;
+  isEnglish?: boolean;
 }
 
-export default function TopicCard({ topic }: TopicCardProps) {
+export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
+  // Get the appropriate route based on language
+  const linkPath = isEnglish 
+    ? `/en/topic/${topic.topicID}` 
+    : `/zh-TW/topic/${topic.topicID}`;
+  
+  // Display title based on language
+  const title = isEnglish ? topic.title : topic.titleCN;
+  
+  // Display summary based on language
+  const summary = isEnglish 
+    ? (topic.summary?.replace(/\*\*/g, '') || '') 
+    : (topic.summaryCN?.replace(/\*\*/g, '') || '');
+
   return (
     <Link 
-      href={`/topic/${topic.topicID}`} 
+      href={linkPath} 
       className="block bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full"
     >
       <div className="relative h-56 w-full">
         {topic.image && (
           <Image 
             src={topic.image} 
-            alt={topic.title}
+            alt={title}
             fill
             style={{ objectFit: 'cover' }}
             priority
@@ -25,14 +39,10 @@ export default function TopicCard({ topic }: TopicCardProps) {
         )}
       </div>
       <div className="p-5">
-        <h2 className="text-xl font-semibold line-clamp-1">{topic.title}</h2>
-        {topic.titleCN && (
-          <p className="text-sm text-gray-500 mb-2 line-clamp-1">{topic.titleCN}</p>
-        )}
-        
-        {topic.summary && (
+        <h2 className="text-xl font-semibold line-clamp-2">{title}</h2>
+        {summary && (
           <p className="mt-3 text-gray-700 text-sm line-clamp-3">
-            {topic.summary.replace(/\*\*/g, '')}
+            {summary}
           </p>
         )}
         
@@ -41,7 +51,7 @@ export default function TopicCard({ topic }: TopicCardProps) {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {new Date(topic.updateTime).toLocaleDateString()}
+            {new Date(topic.updateTime).toLocaleDateString(isEnglish ? 'en-US' : 'zh-TW')}
           </p>
         </div>
       </div>

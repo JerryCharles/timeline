@@ -1,20 +1,40 @@
+'use client';
+
 import Link from 'next/link';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { language, isClient } = useLanguage();
+  const isEnglish = language === 'en';
+
+  // Only use this when client-side rendering is active
+  if (!isClient) {
+    return (
+      <footer className="mt-auto py-8 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">Loading...</div>
+      </footer>
+    );
+  }
+
+  // Get the correct link paths based on language
+  const privacyLink = isEnglish ? '/en/privacy' : '/zh-TW/privacy';
+  const termsLink = isEnglish ? '/en/terms' : '/zh-TW/terms';
+  const cookiesLink = isEnglish ? '/en/cookies' : '/zh-TW/cookies';
+
   return (
     <footer className="mt-auto py-8 bg-gray-50 border-t border-gray-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Links */}
           <div className="flex flex-wrap gap-x-8 gap-y-3 justify-center md:justify-start">
-            <Link href="/privacy" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-              Privacy Policy
+            <Link href={privacyLink} className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+              {isEnglish ? 'Privacy Policy' : '隱私政策'}
             </Link>
-            <Link href="/terms" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-              Terms of Service
+            <Link href={termsLink} className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+              {isEnglish ? 'Terms of Service' : '服務條款'}
             </Link>
-            <Link href="/cookies" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-              Cookie Policy
+            <Link href={cookiesLink} className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+              {isEnglish ? 'Cookie Policy' : 'Cookie 政策'}
             </Link>
           </div>
           
@@ -74,7 +94,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center md:text-right">
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Timeline
+              © {new Date().getFullYear()} {isEnglish ? 'Timeline' : '時間軸'}
             </p>
           </div>
         </div>

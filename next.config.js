@@ -3,7 +3,18 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['berry.b-cdn.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '1.3ja.com',
+        pathname: '/images/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'berry.b-cdn.net',
+        pathname: '/images/**'
+      }
+    ]
   },
 }
 

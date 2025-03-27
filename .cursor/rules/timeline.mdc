@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+
+the project settings and code must support SSR(Next.js).
+the project will only deploy on Cloudflare Workers, not Cloudflare Pages.
+the project also supports mobile UI.

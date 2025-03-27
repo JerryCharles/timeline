@@ -52,9 +52,20 @@ export interface EventsResponse {
   msg: string;
 }
 
+export interface TopicPaginationResponse {
+  topics: Topic[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 const API_URL = 'https://tl-api.3ja.com';
 
-export async function getTopics(): Promise<Topic[]> {
+export async function getTopics(page: number = 1, pageSize: number = 10): Promise<TopicPaginationResponse> {
+  // API expects 0-indexed page
+  const apiPage = Math.max(0, page - 1);
+  
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -63,8 +74,8 @@ export async function getTopics(): Promise<Topic[]> {
     body: JSON.stringify({
       methodName: 'getTopicInfos',
       paramInfo: {
-        page: 0,
-        pageSize: 200,
+        page: apiPage,
+        pageSize,
       },
     }),
   });
@@ -79,7 +90,13 @@ export async function getTopics(): Promise<Topic[]> {
     throw new Error(data.msg || 'Failed to fetch topics');
   }
 
-  return data.data.topics;
+  return {
+    topics: data.data.topics,
+    total: data.data.total,
+    page: page, // Return 1-indexed page for client use
+    pageSize: data.data.pageSize,
+    totalPages: data.data.totalPages,
+  };
 }
 
 export async function getTopicEvents(topicID: number): Promise<{ topic: Topic; events: Event[] }> {

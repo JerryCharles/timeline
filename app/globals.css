@@ -10,4 +10,61 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+}
+
+/* Markdown styling */
+.markdown-content, div:has(> div > ReactMarkdown) {
+  @apply text-gray-700;
+}
+
+.markdown-content p, div:has(> div > ReactMarkdown) p {
+  @apply my-1.5;
+}
+
+.markdown-content a, div:has(> div > ReactMarkdown) a {
+  @apply text-blue-500;
+}
+
+.markdown-content strong, div:has(> div > ReactMarkdown) strong {
+  @apply font-bold;
+}
+
+.markdown-content em, div:has(> div > ReactMarkdown) em {
+  @apply italic;
+}
+
+.markdown-content blockquote, div:has(> div > ReactMarkdown) blockquote {
+  @apply pl-4 border-l-4 border-gray-200 italic my-2;
+}
+
+.markdown-content ul, div:has(> div > ReactMarkdown) ul {
+  @apply list-disc pl-5 my-2;
+}
+
+.markdown-content ol, div:has(> div > ReactMarkdown) ol {
+  @apply list-decimal pl-5 my-2;
+}
+
+.markdown-content h1, div:has(> div > ReactMarkdown) h1 {
+  @apply text-2xl font-bold my-3;
+}
+
+.markdown-content h2, div:has(> div > ReactMarkdown) h2 {
+  @apply text-xl font-bold my-2.5;
+}
+
+.markdown-content h3, div:has(> div > ReactMarkdown) h3 {
+  @apply text-lg font-bold my-2;
+}
+
+.markdown-content code, div:has(> div > ReactMarkdown) code {
+  @apply bg-gray-100 px-1 py-0.5 rounded text-sm;
+}
+
+.markdown-content pre, div:has(> div > ReactMarkdown) pre {
+  @apply bg-gray-100 p-3 rounded my-2 overflow-x-auto;
+}
+
+.markdown-content hr, div:has(> div > ReactMarkdown) hr {
+  @apply my-4 border-gray-200;
 } 

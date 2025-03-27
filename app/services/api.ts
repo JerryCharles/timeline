@@ -60,6 +60,24 @@ export interface TopicPaginationResponse {
   totalPages: number;
 }
 
+// Format date helper function
+export function formatDate(timestamp: number): string {
+  return new Date(timestamp * 1000).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Format date for Chinese locale
+export function formatChineseDate(timestamp: number): string {
+  return new Date(timestamp * 1000).toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
 const API_URL = 'https://tl-api.3ja.com';
 
 export async function getTopics(page: number = 1, pageSize: number = 10): Promise<TopicPaginationResponse> {
@@ -129,13 +147,4 @@ export async function getTopicEvents(topicID: number): Promise<{ topic: Topic; e
     topic: data.data.topic,
     events: data.data.events,
   };
-}
-
-// Function to format timestamp to readable date
-export function formatDate(timestamp: number): string {
-  return new Date(timestamp * 1000).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 } 

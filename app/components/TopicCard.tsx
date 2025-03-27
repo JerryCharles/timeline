@@ -1,11 +1,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Topic } from '../services/api';
+import ReactMarkdown from 'react-markdown';
 
 interface TopicCardProps {
   topic: Topic;
   isEnglish?: boolean;
 }
+
+// Custom link component for ReactMarkdown
+const CustomLink = (props: any) => {
+  const { href, children } = props;
+  return (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="underline"
+    >
+      {children}
+    </a>
+  );
+};
 
 export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
   // Get the appropriate route based on language
@@ -18,8 +34,8 @@ export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
   
   // Display summary based on language
   const summary = isEnglish 
-    ? (topic.summary?.replace(/\*\*/g, '') || '') 
-    : (topic.summaryCN?.replace(/\*\*/g, '') || '');
+    ? topic.summary || ''
+    : topic.summaryCN || '';
 
   return (
     <Link 
@@ -41,9 +57,9 @@ export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
       <div className="p-5">
         <h2 className="text-xl font-semibold line-clamp-2">{title}</h2>
         {summary && (
-          <p className="mt-3 text-gray-700 text-sm line-clamp-3">
-            {summary}
-          </p>
+          <div className="mt-3 text-gray-700 text-sm line-clamp-3 markdown-content">
+            <ReactMarkdown components={{ a: CustomLink }}>{summary}</ReactMarkdown>
+          </div>
         )}
         
         <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">

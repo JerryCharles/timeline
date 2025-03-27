@@ -1,8 +1,0 @@
-name = "timeline"
-compatibility_date = "2025-03-26"
-compatibility_flags = ["nodejs_compat"]
-
-main = "server.js"
-
-[site]
-bucket = "../static"

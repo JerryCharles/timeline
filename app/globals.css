@@ -7,6 +7,20 @@
   --background-rgb: 249, 250, 251;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 17, 24, 39;
+  }
+}
+
+/* Smooth transition for theme switching */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
@@ -14,7 +28,7 @@ body {
 
 /* Markdown styling */
 .markdown-content, div:has(> div > ReactMarkdown) {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-300;
 }
 
 .markdown-content p, div:has(> div > ReactMarkdown) p {
@@ -22,7 +36,7 @@ body {
 }
 
 .markdown-content a, div:has(> div > ReactMarkdown) a {
-  @apply text-blue-500;
+  @apply text-blue-500 dark:text-blue-400;
 }
 
 .markdown-content strong, div:has(> div > ReactMarkdown) strong {
@@ -34,7 +48,7 @@ body {
 }
 
 .markdown-content blockquote, div:has(> div > ReactMarkdown) blockquote {
-  @apply pl-4 border-l-4 border-gray-200 italic my-2;
+  @apply pl-4 border-l-4 border-gray-200 dark:border-gray-700 italic my-2;
 }
 
 .markdown-content ul, div:has(> div > ReactMarkdown) ul {
@@ -58,13 +72,13 @@ body {
 }
 
 .markdown-content code, div:has(> div > ReactMarkdown) code {
-  @apply bg-gray-100 px-1 py-0.5 rounded text-sm;
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
 }
 
 .markdown-content pre, div:has(> div > ReactMarkdown) pre {
-  @apply bg-gray-100 p-3 rounded my-2 overflow-x-auto;
+  @apply bg-gray-100 dark:bg-gray-800 p-3 rounded my-2 overflow-x-auto;
 }
 
 .markdown-content hr, div:has(> div > ReactMarkdown) hr {
-  @apply my-4 border-gray-200;
+  @apply my-4 border-gray-200 dark:border-gray-700;
 } 

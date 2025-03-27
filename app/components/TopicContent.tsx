@@ -81,16 +81,16 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
   return (
     <div className="w-full max-w-5xl">
       <div className="flex items-center justify-between w-full mb-4">
-        <Link href="/en" className="text-blue-500 hover:underline inline-flex items-center gap-1">
+        <Link href="/en" className="text-blue-500 dark:text-blue-400 hover:underline inline-flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
         </Link>
-        <h1 className="text-xl md:text-2xl font-bold text-center flex-1">{topic.title}</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-center flex-1 text-gray-900 dark:text-white">{topic.title}</h1>
         <div className="w-4"></div> {/* Empty div for alignment */}
       </div>
       
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden mb-4">
         {topic.image && (
           <div className="w-full h-64 md:h-96 relative mb-4">
             <Image 
@@ -105,7 +105,7 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
         
         <div className="p-2 md:p-3">
           {topic.summary && (
-            <div className="text-lg text-gray-700 mb-4">
+            <div className="text-lg text-gray-700 dark:text-gray-300 mb-4 markdown-content">
               <ReactMarkdown components={{ a: CustomLink }}>{topic.summary}</ReactMarkdown>
             </div>
           )}
@@ -142,21 +142,21 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
         <LabelsFilter labels={allLabels} onFilterChange={setSelectedLabels} />
       )}
       
-      <h2 className="text-2xl font-semibold mb-6 px-2">Timeline of Events</h2>
+      <h2 className="text-2xl font-semibold mb-6 px-2 text-gray-900 dark:text-white">Timeline of Events</h2>
       
       {filteredEvents.length === 0 ? (
-        <p className="text-gray-500 px-2">
+        <p className="text-gray-500 dark:text-gray-400 px-2">
           {events.length === 0 ? "No events found for this topic." : "No events match the selected labels."}
         </p>
       ) : (
         <div className="relative border-l-2 border-blue-400 pl-8 ml-4 mb-12">
           {filteredEvents.map((event) => (
             <div key={event.eventID} className="mb-10 relative">
-              <div className="absolute w-5 h-5 bg-blue-500 rounded-full -left-11 mt-1 border-2 border-white shadow-sm"></div>
-              <div className="font-medium text-sm text-blue-600 mb-2">{formatDate(event.time)}</div>
-              <div className="bg-white p-5 rounded-lg shadow-sm border">
+              <div className="absolute w-5 h-5 bg-blue-500 rounded-full -left-11 mt-1 border-2 border-white dark:border-gray-800 shadow-sm"></div>
+              <div className="font-medium text-sm text-blue-600 dark:text-blue-400 mb-2">{formatDate(event.time)}</div>
+              <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                 {event.content && (
-                  <div className="text-sm text-gray-500 mt-2">
+                  <div className="text-sm text-gray-500 dark:text-gray-400 mt-2 markdown-content">
                     <ReactMarkdown components={{ a: CustomLink }}>{event.content}</ReactMarkdown>
                   </div>
                 )}

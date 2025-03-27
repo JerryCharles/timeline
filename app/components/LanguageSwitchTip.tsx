@@ -35,9 +35,9 @@ export default function LanguageSwitchTip() {
   }
 
   return (
-    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white shadow-lg rounded-lg p-4 z-50 w-11/12 max-w-md border border-gray-200">
+    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 z-50 w-11/12 max-w-md border border-gray-200 dark:border-gray-700">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-700">
+        <p className="text-sm text-gray-700 dark:text-gray-300">
           {language === 'en' 
             ? 'This page is available in English' 
             : '此頁面提供繁體中文版本'}
@@ -51,7 +51,7 @@ export default function LanguageSwitchTip() {
           </button>
           <button 
             onClick={() => setShouldShow(false)}
-            className="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors"
+            className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
           >
             {language === 'en' ? 'Dismiss' : '關閉'}
           </button>

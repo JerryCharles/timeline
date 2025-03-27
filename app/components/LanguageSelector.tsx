@@ -19,7 +19,7 @@ export default function LanguageSelector() {
     return (
       <div className="relative">
         <button
-          className="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none"
+          className="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none"
         >
           Loading...
         </button>
@@ -31,7 +31,7 @@ export default function LanguageSelector() {
     <div className="relative">
       <button
         onClick={handleToggle}
-        className="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none"
+        className="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none"
       >
         {language === 'en' ? '繁體中文' : 'English'}
       </button>

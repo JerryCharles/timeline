@@ -41,8 +41,8 @@ export default function Pagination({ currentPage, totalPages, basePath }: Pagina
             href={currentPage > 1 ? `${basePath}?page=${currentPage - 1}` : '#'}
             className={`flex items-center justify-center h-9 w-9 rounded border ${
               currentPage > 1 
-                ? 'text-gray-700 border-gray-300 hover:bg-blue-50 hover:border-blue-400' 
-                : 'text-gray-400 border-gray-200 cursor-not-allowed'
+                ? 'text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-400 dark:hover:border-blue-500' 
+                : 'text-gray-400 dark:text-gray-600 border-gray-200 dark:border-gray-700 cursor-not-allowed'
             }`}
             aria-disabled={currentPage <= 1}
             tabIndex={currentPage <= 1 ? -1 : undefined}
@@ -61,8 +61,8 @@ export default function Pagination({ currentPage, totalPages, basePath }: Pagina
               href={`${basePath}?page=${pageNum}`}
               className={`flex items-center justify-center h-9 w-9 rounded border ${
                 pageNum === currentPage
-                  ? 'bg-blue-50 text-blue-600 border-blue-400 font-medium'
-                  : 'text-gray-700 border-gray-300 hover:bg-gray-50'
+                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-blue-400 dark:border-blue-500 font-medium'
+                  : 'text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
               aria-current={pageNum === currentPage ? 'page' : undefined}
             >
@@ -77,8 +77,8 @@ export default function Pagination({ currentPage, totalPages, basePath }: Pagina
             href={currentPage < totalPages ? `${basePath}?page=${currentPage + 1}` : '#'}
             className={`flex items-center justify-center h-9 w-9 rounded border ${
               currentPage < totalPages 
-                ? 'text-gray-700 border-gray-300 hover:bg-blue-50 hover:border-blue-400' 
-                : 'text-gray-400 border-gray-200 cursor-not-allowed'
+                ? 'text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-400 dark:hover:border-blue-500' 
+                : 'text-gray-400 dark:text-gray-600 border-gray-200 dark:border-gray-700 cursor-not-allowed'
             }`}
             aria-disabled={currentPage >= totalPages}
             tabIndex={currentPage >= totalPages ? -1 : undefined}

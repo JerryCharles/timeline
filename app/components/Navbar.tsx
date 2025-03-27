@@ -15,10 +15,10 @@ export default function Navbar() {
   const aboutPath = isEnglish ? '/en/about' : '/zh-TW/about';
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b shadow-sm py-3">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm py-3">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <Link href={homeLink} className="flex items-center gap-2">
-          <div className="text-pink-500">
+          <div className="text-pink-500 dark:text-pink-400">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="4" r="2" fill="currentColor" />
               <circle cx="12" cy="12" r="2" fill="currentColor" />
@@ -27,8 +27,8 @@ export default function Navbar() {
             </svg>
           </div>
           <div>
-            <h1 className="text-xl font-bold text-pink-500">{isEnglish ? 'Timeline' : '時間軸'}</h1>
-            <p className="text-xs text-gray-500 -mt-1">{isEnglish ? 'Unravel the Insights' : '探索時間的洞察'}</p>
+            <h1 className="text-xl font-bold text-pink-500 dark:text-pink-400">{isEnglish ? 'Timeline' : '時間軸'}</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">{isEnglish ? 'Unravel the Insights' : '探索時間的洞察'}</p>
           </div>
         </Link>
         
@@ -44,7 +44,7 @@ export default function Navbar() {
             <LanguageSelector />
           </div>
 
-          <button className="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+          <button className="md:hidden text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>

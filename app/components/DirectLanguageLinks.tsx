@@ -26,14 +26,14 @@ export default function DirectLanguageLinks() {
     <div className="flex items-center space-x-4">
       <Link 
         href={`/en${segments.length > 1 && segments[0] !== 'en' ? '/' + segments.slice(1).join('/') : ''}`}
-        className={`text-sm ${language === 'en' ? 'font-bold text-blue-500' : 'text-gray-500 hover:text-blue-500'}`}
+        className={`text-sm ${language === 'en' ? 'font-bold text-blue-500 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400'}`}
       >
         English
       </Link>
-      <span className="text-gray-300">|</span>
+      <span className="text-gray-300 dark:text-gray-600">|</span>
       <Link 
         href={`/zh-TW${segments.length > 1 && segments[0] !== 'zh-TW' ? '/' + segments.slice(1).join('/') : ''}`}
-        className={`text-sm ${language === 'zh-TW' ? 'font-bold text-blue-500' : 'text-gray-500 hover:text-blue-500'}`}
+        className={`text-sm ${language === 'zh-TW' ? 'font-bold text-blue-500 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400'}`}
       >
         繁體中文
       </Link>

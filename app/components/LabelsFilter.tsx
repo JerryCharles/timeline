@@ -36,10 +36,10 @@ export default function LabelsFilter({ labels, onFilterChange }: LabelsFilterPro
   return (
     <div className="w-full mb-6">
       <div className="flex justify-between items-center mb-3">
-        <h3 className="text-sm font-medium text-gray-700">Filter by Labels</h3>
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by Labels</h3>
         <button 
           onClick={selectedLabels.length === labels.length ? deselectAll : selectAll}
-          className="text-sm text-blue-600 hover:text-blue-800"
+          className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
         >
           {selectedLabels.length === labels.length ? 'Deselect All' : 'Select All'}
         </button>
@@ -51,8 +51,8 @@ export default function LabelsFilter({ labels, onFilterChange }: LabelsFilterPro
             onClick={() => toggleLabel(label)}
             className={`text-xs px-3 py-1 rounded-full font-medium ${
               selectedLabels.includes(label)
-                ? 'bg-blue-100 text-blue-700 border border-blue-300'
-                : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100'
+                ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700'
+                : 'bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
           >
             {label}

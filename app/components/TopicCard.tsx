@@ -40,7 +40,7 @@ export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
   return (
     <Link 
       href={linkPath} 
-      className="block bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full"
+      className="block bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full"
     >
       <div className="relative h-56 w-full">
         {topic.image && (
@@ -50,20 +50,20 @@ export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
             fill
             style={{ objectFit: 'cover' }}
             priority
-            className="bg-gray-100"
+            className="bg-gray-100 dark:bg-gray-700"
           />
         )}
       </div>
       <div className="p-5">
-        <h2 className="text-xl font-semibold line-clamp-2">{title}</h2>
+        <h2 className="text-xl font-semibold line-clamp-2 dark:text-white">{title}</h2>
         {summary && (
-          <div className="mt-3 text-gray-700 text-sm line-clamp-3 markdown-content">
+          <div className="mt-3 text-gray-700 dark:text-gray-300 text-sm line-clamp-3 markdown-content">
             <ReactMarkdown components={{ a: CustomLink }}>{summary}</ReactMarkdown>
           </div>
         )}
         
-        <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
-          <p className="text-xs text-gray-500 flex items-center">
+        <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
+          <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

@@ -20,7 +20,7 @@ export default async function ChineseTopicPage({ params }: { params: { id: strin
   const sortedEvents = [...events].sort((a, b) => b.time - a.time);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 md:p-12 bg-gray-50">
+    <main className="flex min-h-screen flex-col items-center p-6 md:p-12 bg-gray-50 dark:bg-gray-900">
       <ChineseTopicContent
         topic={topic}
         events={sortedEvents}

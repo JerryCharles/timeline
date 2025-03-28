@@ -1,21 +1,54 @@
-'use client';
+import { Metadata } from 'next';
 
-import { useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+// Define the base URL for your site
+const baseUrl = 'https://3ja.com';
+
+// Export metadata as a server component
+export const metadata: Metadata = {
+  title: '時間軸',
+  description: '以時間軸格式瀏覽主題和事件',
+  keywords: ['時間軸', '事件', '歷史', '主題'],
+  openGraph: {
+    title: '時間軸',
+    description: '以時間軸格式瀏覽主題和事件',
+    url: `${baseUrl}/zh-TW`,
+    siteName: '時間軸',
+    locale: 'zh_TW',
+    type: 'website',
+    images: [
+      {
+        url: `${baseUrl}/og-image-zh-TW.jpg`,
+        width: 1200,
+        height: 630,
+        alt: '時間軸 - 以時間軸格式瀏覽事件',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '時間軸',
+    description: '以時間軸格式瀏覽主題和事件',
+    images: [`${baseUrl}/twitter-image-zh-TW.jpg`],
+  },
+  alternates: {
+    canonical: '/zh-TW',
+    languages: {
+      'en': '/en',
+      'zh-TW': '/zh-TW',
+    },
+  },
+};
+
+import ChineseClient from './LanguageClient';
 
 export default function ChineseLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { setLanguage, isClient } = useLanguage();
-
-  // Only update the cookie, don't redirect
-  useEffect(() => {
-    if (isClient) {
-      setLanguage('zh-TW');
-    }
-  }, [isClient, setLanguage]);
-
-  return children;
+  return (
+    <ChineseClient>
+      {children}
+    </ChineseClient>
+  );
 } 

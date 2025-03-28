@@ -1,5 +1,58 @@
 import { getTopics, getTopicEvents } from '../../../services/api';
 import ChineseTopicContent from '../../../components/ChineseTopicContent';
+import { Metadata } from 'next';
+
+// Generate dynamic metadata based on topic data
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const topicID = parseInt(params.id, 10);
+  
+  // Fetch the topic data
+  const { topic, events } = await getTopicEvents(topicID);
+  
+  // Extract keywords from events labels (use Chinese labels)
+  const eventLabels = events.flatMap(event => event.labelsCN).filter(Boolean);
+  const uniqueLabels = Array.from(new Set(eventLabels));
+  
+  // Base URL
+  const baseUrl = 'https://3ja.com';
+  
+  return {
+    title: `${topic.titleCN} | 時間軸`,
+    description: topic.summaryCN,
+    keywords: [...uniqueLabels, topic.titleCN, '時間軸', '事件', '歷史'],
+    openGraph: {
+      title: `${topic.titleCN} | 時間軸`,
+      description: topic.summaryCN,
+      url: `${baseUrl}/zh-TW/topic/${params.id}`,
+      siteName: '時間軸',
+      locale: 'zh_TW',
+      type: 'article',
+      publishedTime: new Date(topic.time * 1000).toISOString(),
+      modifiedTime: new Date(topic.updateTime * 1000).toISOString(),
+      images: [
+        {
+          url: topic.image || `${baseUrl}/og-image-zh-TW.jpg`,
+          width: 1200,
+          height: 630,
+          alt: topic.titleCN,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${topic.titleCN} | 時間軸`,
+      description: topic.summaryCN,
+      images: [topic.image || `${baseUrl}/twitter-image-zh-TW.jpg`],
+    },
+    alternates: {
+      canonical: `/zh-TW/topic/${params.id}`,
+      languages: {
+        'en': `/en/topic/${params.id}`,
+        'zh-TW': `/zh-TW/topic/${params.id}`,
+      },
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const { topics } = await getTopics();

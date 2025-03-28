@@ -21,7 +21,7 @@ export default function NotFound() {
         <h1 className="text-4xl font-bold text-red-500 mb-4">404</h1>
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Topic Not Found</h2>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
-          The topic you're looking for doesn't exist or may have been removed.
+          The topic you&apos;re looking for doesn&apos;t exist or may have been removed.
         </p>
         <p className="text-sm text-blue-500 dark:text-blue-400 mb-6">
           Redirecting to home page in 5 seconds...

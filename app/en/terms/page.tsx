@@ -22,7 +22,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">1. Acceptance of Terms</h2>
             <p className="mb-4">
-              By accessing or using the Timeline service ("Service"), you agree to be bound by these Terms of Service ("Terms"). 
+              By accessing or using the Timeline service (&quot;Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). 
               If you do not agree to these Terms, please do not use the Service.
             </p>
             <p>

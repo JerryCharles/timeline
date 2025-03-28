@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Introduction</h2>
             <p className="mb-4">
-              Timeline ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, 
+              Timeline (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, 
               and safeguard your information when you use our service.
             </p>
             <p>
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
             <p>
               Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity, and providing other 
               services relating to website activity and internet usage. Google may also transfer this information to third parties where required to do so by law, 
-              or where such third parties process the information on Google's behalf.
+              or where such third parties process the information on Google&apos;s behalf.
             </p>
           </section>
 
@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
               information about your browsing activities over time and across different websites. This information may be used to provide you with interest-based advertising.
             </p>
             <p>
-              We do not control these third parties' tracking technologies or how they may be used. If you have any questions about an advertisement, 
+              We do not control these third parties&apos; tracking technologies or how they may be used. If you have any questions about an advertisement, 
               you should contact the responsible advertiser directly.
             </p>
           </section>
@@ -118,7 +118,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Changes to This Privacy Policy</h2>
             <p>
               We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy 
-              on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.
+              on this page and updating the &quot;Last Updated&quot; date. You are advised to review this Privacy Policy periodically for any changes.
             </p>
           </section>
 

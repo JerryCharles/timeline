@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import LanguageSelector from './LanguageSelector';
 import DirectLanguageLinks from './DirectLanguageLinks';
 import { useLanguage } from '../context/LanguageContext';
+import { useState } from 'react';
 
 export default function Navbar() {
   const { language, isClient } = useLanguage();
@@ -13,29 +15,23 @@ export default function Navbar() {
   const homeLink = isEnglish ? '/en' : '/zh-TW';
   const explorePath = isEnglish ? '/en/explore' : '/zh-TW/explore';
   const aboutPath = isEnglish ? '/en/about' : '/zh-TW/about';
+  const privacyPath = isEnglish ? '/en/privacy' : '/zh-TW/privacy';
+  const termsPath = isEnglish ? '/en/terms' : '/zh-TW/terms';
 
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm py-3">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <Link href={homeLink} className="flex items-center gap-2">
           <div className="text-pink-500 dark:text-pink-400">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="4" r="2" fill="currentColor" />
-              <circle cx="12" cy="12" r="2" fill="currentColor" />
-              <circle cx="12" cy="20" r="2" fill="currentColor" />
-              <line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
+            <Image src="/logo.png" alt="Timeline Logo" width={60} height={60} />
           </div>
           <div>
             <h1 className="text-xl font-bold text-pink-500 dark:text-pink-400">{isEnglish ? 'Timeline' : '時間軸'}</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">{isEnglish ? 'Unravel the Insights' : '探索時間的洞察'}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{isEnglish ? 'Unravel the Insights' : '揭秘真諦'}</p>
           </div>
         </Link>
         
         <div className="flex items-center gap-6">
-          <div className="hidden md:flex items-center space-x-8">
-          </div>
-          
           {/* Use both approaches for now */}
           <div className="hidden md:block">
             <DirectLanguageLinks />
@@ -43,12 +39,6 @@ export default function Navbar() {
           <div className="md:hidden">
             <LanguageSelector />
           </div>
-
-          <button className="md:hidden text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
         </div>
       </div>
     </nav>

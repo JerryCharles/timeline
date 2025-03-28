@@ -28,7 +28,6 @@ export default function Footer() {
   // Get the correct link paths based on language
   const privacyLink = isEnglish ? '/en/privacy' : '/zh-TW/privacy';
   const termsLink = isEnglish ? '/en/terms' : '/zh-TW/terms';
-  const cookiesLink = isEnglish ? '/en/cookies' : '/zh-TW/cookies';
 
   return (
     <footer className="mt-auto py-8 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
@@ -41,9 +40,6 @@ export default function Footer() {
             </Link>
             <Link href={termsLink} className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               {isEnglish ? 'Terms of Service' : '服務條款'}
-            </Link>
-            <Link href={cookiesLink} className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              {isEnglish ? 'Cookie Policy' : 'Cookie 政策'}
             </Link>
           </div>
           
@@ -100,7 +96,7 @@ export default function Footer() {
             </a>
           </div>
           
-          {/* Theme Switcher and Copyright */}
+          {/* Theme Switcher */}
           <div className="flex flex-col items-center md:items-end space-y-3">
             {/* Theme Switcher */}
             <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
@@ -159,12 +155,14 @@ export default function Footer() {
                 </svg>
               </button>
             </div>
-            
-            {/* Copyright */}
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} {isEnglish ? 'Timeline' : '時間軸'}
-            </p>
           </div>
+        </div>
+        
+        {/* Copyright - Moved to its own row and centered */}
+        <div className="mt-2 text-center">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            © {new Date().getFullYear()} {isEnglish ? 'Timeline' : '時間軸'}
+          </p>
         </div>
       </div>
     </footer>

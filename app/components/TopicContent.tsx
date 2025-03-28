@@ -48,13 +48,17 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = topic.title;
   
-  // Format date based on locale
+  // Format date as YYYY-MM-DD HH:MM
   const formatDate = (timestamp: number): string => {
-    return new Date(timestamp * 1000).toLocaleDateString(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    const date = new Date(timestamp * 1000);
+    
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
   
   // Get all unique labels from events
@@ -79,7 +83,7 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
   }, [events, selectedLabels]);
 
   return (
-    <div className="w-full max-w-5xl">
+    <div className="w-full max-w-6xl">
       <div className="flex items-center justify-between w-full mb-4">
         <Link href="/en" className="text-blue-500 dark:text-blue-400 hover:underline inline-flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

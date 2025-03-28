@@ -23,6 +23,19 @@ const CustomLink = (props: any) => {
   );
 };
 
+// Format date to YYYY-MM-DD HH:MM
+const formatDate = (timestamp: number | string): string => {
+  const date = new Date(timestamp);
+  
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+};
+
 export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
   // Get the appropriate route based on language
   const linkPath = isEnglish 
@@ -67,7 +80,7 @@ export default function TopicCard({ topic, isEnglish = true }: TopicCardProps) {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {new Date(topic.updateTime).toLocaleDateString(isEnglish ? 'en-US' : 'zh-TW')}
+            {formatDate(topic.updateTime)}
           </p>
         </div>
       </div>

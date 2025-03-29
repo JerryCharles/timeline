@@ -110,7 +110,7 @@ export default function ChineseTopicContent({ topic, events, locale = 'zh-TW' }:
         <div className="p-2 md:p-3">
           {topic.summaryCN && (
             <div className="text-lg text-gray-700 dark:text-gray-300 mb-4 markdown-content">
-              <ReactMarkdown components={{ a: CustomLink }}>{topic.summaryCN}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: CustomLink }}>{topic.summaryCN}</ReactMarkdown>
             </div>
           )}
         </div>

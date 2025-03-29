@@ -110,7 +110,7 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
         <div className="p-2 md:p-3">
           {topic.summary && (
             <div className="text-lg text-gray-700 dark:text-gray-300 mb-4 markdown-content">
-              <ReactMarkdown components={{ a: CustomLink }}>{topic.summary}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: CustomLink }}>{topic.summary}</ReactMarkdown>
             </div>
           )}
         </div>

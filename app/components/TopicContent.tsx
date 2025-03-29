@@ -158,9 +158,17 @@ export default function TopicContent({ topic, events, locale = 'en-US' }: TopicC
             <div key={event.eventID} className="mb-10 relative">
               <div className="absolute w-5 h-5 bg-blue-500 rounded-full -left-11 mt-1 border-2 border-white dark:border-gray-800 shadow-sm"></div>
               <div className="font-medium text-sm text-blue-600 dark:text-blue-400 mb-2">{formatDate(event.time)}</div>
-              <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+              <div className={`${
+                event.type === 1 
+                  ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700' 
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+              } p-5 rounded-lg shadow-sm border`}>
                 {event.content && (
-                  <div className="text-sm text-gray-500 dark:text-gray-400 mt-2 markdown-content">
+                  <div className={`text-sm ${
+                    event.type === 1 
+                      ? 'text-yellow-800 dark:text-yellow-200' 
+                      : 'text-gray-500 dark:text-gray-400'
+                  } mt-2 markdown-content`}>
                     <ReactMarkdown components={{ a: CustomLink }}>{event.content}</ReactMarkdown>
                   </div>
                 )}

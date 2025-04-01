@@ -11,26 +11,31 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     // Fetch the topic data
     const { topic, events } = await getTopicEvents(topicID);
     
-    // Extract keywords from events labels
-    const eventLabels = events.flatMap(event => event.labels).filter(Boolean);
-    const uniqueLabels = Array.from(new Set(eventLabels));
-    
     // Base URL
     const baseUrl = 'https://3ja.com';
+
+    // Format the date for schema
+    const publishDate = new Date(topic.time * 1000).toISOString();
+    const modifyDate = new Date(topic.updateTime * 1000).toISOString();
+    
+    // Prepare article tags
+    const articleTags = [...(topic.keywords || [])];
     
     return {
-      title: `${topic.title} | Timeline`,
+      title: `${topic.title} | 3ja.com`,
       description: topic.summary,
-      keywords: [...uniqueLabels, topic.title, 'timeline', 'events', 'history'],
+      keywords: [...articleTags, topic.title, 'timeline', 'events', 'history'],
       openGraph: {
-        title: `${topic.title} | Timeline`,
+        title: `${topic.title} | 3ja.com`,
         description: topic.summary,
         url: `${baseUrl}/en/topic/${params.id}`,
-        siteName: 'Timeline',
+        siteName: '3ja.com',
         locale: 'en_US',
         type: 'article',
-        publishedTime: new Date(topic.time * 1000).toISOString(),
-        modifiedTime: new Date(topic.updateTime * 1000).toISOString(),
+        publishedTime: publishDate,
+        modifiedTime: modifyDate,
+        authors: ['3ja.com'],
+        tags: articleTags,
         images: [
           {
             url: topic.image || `${baseUrl}/og-image-en.jpg`,
@@ -42,9 +47,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${topic.title} | Timeline`,
+        title: `${topic.title} | 3 Journeys Ahead`,
         description: topic.summary,
         images: [topic.image || `${baseUrl}/twitter-image-en.jpg`],
+        site: '@3ja_com',
       },
       alternates: {
         canonical: `/en/topic/${params.id}`,
@@ -53,10 +59,42 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           'zh-TW': `/zh-TW/topic/${params.id}`,
         },
       },
+      other: {
+        // Schema.org Article markup
+        'schema:webpage': JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: topic.title,
+          description: topic.summary,
+          image: topic.image || `${baseUrl}/og-image-en.jpg`,
+          datePublished: publishDate,
+          dateModified: modifyDate,
+          author: [{
+            '@type': 'Organization',
+            name: '3ja.com',
+            url: baseUrl
+          }],
+          publisher: {
+            '@type': 'Organization',
+            name: '3ja.com',
+            logo: {
+              '@type': 'ImageObject',
+              url: `${baseUrl}/logo.png`
+            }
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${baseUrl}/en/topic/${params.id}`
+          }
+        }),
+        // Mobile app deep linking
+        'apple-itunes-app': 'app-id=YOUR_APP_ID',
+        'google-play-app': 'app-id=YOUR_APP_ID',
+      },
     };
   } catch (error) {
     return {
-      title: 'Topic Not Found | Timeline',
+      title: 'Topic Not Found | 3 Journeys Ahead',
       description: 'The requested topic could not be found.',
     };
   }

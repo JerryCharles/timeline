@@ -5,14 +5,14 @@ const baseUrl = 'https://3ja.com';
 
 // Export metadata as a server component
 export const metadata: Metadata = {
-  title: '時間軸',
+  title: '3ja.com',
   description: '以時間軸格式瀏覽主題和事件',
   keywords: ['時間軸', '事件', '歷史', '主題'],
   openGraph: {
-    title: '時間軸',
+    title: '3ja.com',
     description: '以時間軸格式瀏覽主題和事件',
     url: `${baseUrl}/zh-TW`,
-    siteName: '時間軸',
+    siteName: '3ja.com',
     locale: 'zh_TW',
     type: 'website',
     images: [
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og-image-zh-TW.jpg`,
         width: 1200,
         height: 630,
-        alt: '時間軸 - 以時間軸格式瀏覽事件',
+        alt: '3ja.com - 以時間軸格式瀏覽事件',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '時間軸',
+    title: '3ja.com',
     description: '以時間軸格式瀏覽主題和事件',
     images: [`${baseUrl}/twitter-image-zh-TW.jpg`],
   },

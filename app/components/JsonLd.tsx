@@ -2,7 +2,7 @@ export default function JsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Timeline',
+    name: '3 Journeys Ahead',
     url: 'https://3ja.com',
     description: 'Browse topics and events in a timeline format',
     potentialAction: {

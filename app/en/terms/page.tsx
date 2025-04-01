@@ -22,7 +22,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">1. Acceptance of Terms</h2>
             <p className="mb-4">
-              By accessing or using the Timeline service (&quot;Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). 
+              By accessing or using the 3ja.com service (&quot;Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). 
               If you do not agree to these Terms, please do not use the Service.
             </p>
             <p>
@@ -42,7 +42,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">3. Service Description</h2>
             <p className="mb-4">
-              Timeline is an informational service that allows users to browse topics and events in a timeline format. 
+            3ja.com is an informational service that allows users to browse topics and events in a timeline format. 
               The Service does not require you to create an account to access its content.
             </p>
             <p>
@@ -59,7 +59,7 @@ export default function TermsOfService() {
             </p>
             <p>
               We are not responsible for the content of these advertisements, and the presence of an advertisement does not constitute 
-              an endorsement of the advertised product or service by Timeline.
+              an endorsement of the advertised product or service by 3ja.com.
             </p>
           </section>
 
@@ -94,7 +94,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">7. Intellectual Property</h2>
             <p>
-              The Service and its original content, features, and functionality are owned by Timeline and are protected by 
+              The Service and its original content, features, and functionality are owned by 3ja.com and are protected by 
               international copyright, trademark, patent, trade secret, and other intellectual property laws.
             </p>
           </section>
@@ -127,7 +127,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">11. Contact Us</h2>
             <p>
-              If you have any questions about these Terms, please contact us at terms@timeline.com.
+              If you have any questions about these Terms, please contact us at terms@3ja.com.
             </p>
           </section>
 

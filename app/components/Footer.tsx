@@ -143,7 +143,7 @@ export default function Footer() {
         {/* Copyright - Moved to its own row and centered */}
         <div className="mt-2 text-center">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} {isEnglish ? 'Timeline' : '時間軸'}
+            © {new Date().getFullYear()} {'3ja.com'}
           </p>
         </div>
       </div>

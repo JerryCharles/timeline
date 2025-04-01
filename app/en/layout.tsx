@@ -5,14 +5,14 @@ const baseUrl = 'https://3ja.com';
 
 // Export metadata as a server component
 export const metadata: Metadata = {
-  title: 'Timeline',
+  title: '3 Journeys Ahead',
   description: 'Browse topics and events in a timeline format',
   keywords: ['timeline', 'events', 'history', 'topics'],
   openGraph: {
-    title: 'Timeline',
+    title: '3 Journeys Ahead',
     description: 'Browse topics and events in a timeline format',
     url: `${baseUrl}/en`,
-    siteName: 'Timeline',
+    siteName: '3 Journeys Ahead',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og-image-en.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Timeline - Browse events in a timeline format',
+        alt: '3 Journeys Ahead - Browse events in a timeline format',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Timeline',
+    title: '3 Journeys Ahead',
     description: 'Browse topics and events in a timeline format',
     images: [`${baseUrl}/twitter-image-en.jpg`],
   },

@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Introduction</h2>
             <p className="mb-4">
-              Timeline (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, 
+            3ja.com (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, 
               and safeguard your information when you use our service.
             </p>
             <p>
@@ -125,7 +125,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Contact Us</h2>
             <p>
-              If you have any questions about this Privacy Policy, please contact us at privacy@timeline.com.
+              If you have any questions about this Privacy Policy, please contact us at privacy@3ja.com.
             </p>
           </section>
 

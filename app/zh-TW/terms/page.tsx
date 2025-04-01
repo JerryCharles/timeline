@@ -119,7 +119,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">11. 聯繫我們</h2>
             <p>
-              如果您對這些條款有任何疑問，請通過 terms@timeline.com 與我們聯繫。
+              如果您對這些條款有任何疑問，請通過 terms@3ja.com 與我們聯繫。
             </p>
           </section>
 

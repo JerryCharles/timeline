@@ -11,6 +11,8 @@ export interface Topic {
   updateTime: number;
   isDelete: number;
   relatedTopics: any[];
+  keywords: string[];
+  keywordsCN: string[];
 }
 
 export interface Event {

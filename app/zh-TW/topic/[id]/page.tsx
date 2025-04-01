@@ -11,26 +11,31 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     // Fetch the topic data
     const { topic, events } = await getTopicEvents(topicID);
     
-    // Extract keywords from events labels
-    const eventLabels = events.flatMap(event => event.labelsCN).filter(Boolean);
-    const uniqueLabels = Array.from(new Set(eventLabels));
-    
     // Base URL
     const baseUrl = 'https://3ja.com';
+
+    // Format the date for schema
+    const publishDate = new Date(topic.time * 1000).toISOString();
+    const modifyDate = new Date(topic.updateTime * 1000).toISOString();
+    
+    // Prepare article tags
+    const articleTags = [...(topic.keywordsCN || [])];
     
     return {
-      title: `${topic.titleCN} | Timeline`,
+      title: `${topic.titleCN} | 3ja.com`,
       description: topic.summaryCN,
-      keywords: [...uniqueLabels, topic.titleCN, '時間軸', '事件', '歷史'],
+      keywords: [...articleTags, topic.titleCN, '時間軸', '事件', '歷史'],
       openGraph: {
-        title: `${topic.titleCN} | Timeline`,
+        title: `${topic.titleCN} | 3ja.com`,
         description: topic.summaryCN,
         url: `${baseUrl}/zh-TW/topic/${params.id}`,
-        siteName: 'Timeline',
+        siteName: '3ja.com',
         locale: 'zh_TW',
         type: 'article',
-        publishedTime: new Date(topic.time * 1000).toISOString(),
-        modifiedTime: new Date(topic.updateTime * 1000).toISOString(),
+        publishedTime: publishDate,
+        modifiedTime: modifyDate,
+        authors: ['3ja.com'],
+        tags: articleTags,
         images: [
           {
             url: topic.image || `${baseUrl}/og-image-zh.jpg`,
@@ -42,9 +47,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${topic.titleCN} | Timeline`,
+        title: `${topic.titleCN} | 3ja.com`,
         description: topic.summaryCN,
         images: [topic.image || `${baseUrl}/twitter-image-zh.jpg`],
+        site: '@3ja_com',
       },
       alternates: {
         canonical: `/zh-TW/topic/${params.id}`,
@@ -53,10 +59,44 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           'zh-TW': `/zh-TW/topic/${params.id}`,
         },
       },
+      other: {
+        // Schema.org Article markup
+        'schema:webpage': JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: topic.titleCN,
+          description: topic.summaryCN,
+          image: topic.image || `${baseUrl}/og-image-zh.jpg`,
+          datePublished: publishDate,
+          dateModified: modifyDate,
+          author: [{
+            '@type': 'Organization',
+            name: '3ja.com',
+            url: baseUrl
+          }],
+          publisher: {
+            '@type': 'Organization',
+            name: '3ja.com',
+            logo: {
+              '@type': 'ImageObject',
+              url: `${baseUrl}/logo.png`
+            }
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${baseUrl}/zh-TW/topic/${params.id}`
+          },
+          inLanguage: 'zh-TW'
+        }),
+        // Mobile app deep linking
+        'apple-itunes-app': 'app-id=YOUR_APP_ID',
+        'google-play-app': 'app-id=YOUR_APP_ID',
+        'line-share': 'true'
+      },
     };
   } catch (error) {
     return {
-      title: '主題不存在 | Timeline',
+      title: '主題不存在 | 3ja.com',
       description: '找不到請求的主題。',
     };
   }

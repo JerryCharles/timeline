@@ -118,7 +118,6 @@ export default function ChineseTopicContent({ topic, events, locale = 'zh-TW' }:
       
       {/* Share buttons */}
       <div className="p-2 mb-3">
-        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 text-center">分享此時間軸</h3>
         <div className="flex flex-wrap gap-2 justify-center">
           <FacebookShareButton url={shareUrl} hashtag="#timeline">
             <FacebookIcon size={32} round />

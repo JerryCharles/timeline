@@ -118,7 +118,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">聯繫我們</h2>
             <p>
-              如果您對本隱私政策有任何疑問，請通過 privacy@timeline.com 與我們聯繫。
+              如果您對本隱私政策有任何疑問，請通過 privacy@3ja.com 與我們聯繫。
             </p>
           </section>
 

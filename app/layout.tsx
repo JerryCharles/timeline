@@ -8,12 +8,12 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import JsonLd from './components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Timeline',
+  title: '3 Journeys Ahead',
   description: 'Browse topics and events in a timeline format',
   keywords: ['timeline', 'events', 'history', 'topics'],
-  authors: [{ name: 'Timeline Team' }],
-  creator: 'Timeline Team',
-  publisher: 'Timeline',
+  authors: [{ name: '3 Journeys Ahead Team' }],
+  creator: '3 Journeys Ahead Team',
+  publisher: '3 Journeys Ahead',
   metadataBase: new URL('https://3ja.com'),
   alternates: {
     canonical: '/',
@@ -23,10 +23,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Timeline',
+    title: '3 Journeys Ahead',
     description: 'Browse topics and events in a timeline format',
     url: 'https://3ja.com',
-    siteName: 'Timeline',
+    siteName: '3 Journeys Ahead',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
         url: 'https://3ja.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Timeline - Browse events in a timeline format',
+        alt: '3 Journeys Ahead - Browse events in a timeline format',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Timeline',
+    title: '3 Journeys Ahead',
     description: 'Browse topics and events in a timeline format',
     images: ['https://3ja.com/twitter-image.jpg'],
   },

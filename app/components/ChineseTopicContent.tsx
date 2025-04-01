@@ -19,6 +19,7 @@ import {
   WhatsappIcon,
   LineIcon
 } from 'react-share';
+import ExpandArrow from './ExpandArrow';
 
 interface ChineseTopicContentProps {
   topic: Topic;
@@ -43,10 +44,41 @@ const CustomLink = (props: any) => {
 
 export default function ChineseTopicContent({ topic, events, locale = 'zh-TW' }: ChineseTopicContentProps) {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
+  const [expandedEvents, setExpandedEvents] = useState<Set<string>>(() => {
+    // Initialize with the first event expanded if it exists
+    if (events.length > 0) {
+      return new Set([String(events[0].eventID)]);
+    }
+    return new Set();
+  });
   
   // Get current URL for sharing
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = topic.titleCN;
+  
+  // Toggle event expansion
+  const toggleEventExpansion = (eventId: string) => {
+    setExpandedEvents(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(eventId)) {
+        newSet.delete(eventId);
+      } else {
+        newSet.add(eventId);
+      }
+      return newSet;
+    });
+  };
+
+  // Get first line of content
+  const getFirstLine = (content: string) => {
+    return content.split('\n')[0];
+  };
+
+  // Check if content has multiple lines
+  const hasMultipleLines = (content: string) => {
+    const lines = content.split('\n').filter(line => line.trim().length > 0);
+    return lines.length > 1;
+  };
   
   // Format date as YYYY-MM-DD HH:MM
   const formatDate = (timestamp: number): string => {
@@ -189,21 +221,29 @@ export default function ChineseTopicContent({ topic, events, locale = 'zh-TW' }:
       ) : (
         <div className="relative border-l-2 border-blue-400 pl-8 ml-4 mb-12">
           {filteredEvents.map((event) => (
-            <div key={event.eventID} className="mb-10 relative">
+            <div key={event.eventID} className="mb-6 relative">
               <div className="absolute w-5 h-5 bg-blue-500 rounded-full -left-11 mt-1 border-2 border-white dark:border-gray-800 shadow-sm"></div>
-              <div className="font-medium text-sm text-blue-600 dark:text-blue-400 mb-2">{formatDate(event.time)}</div>
+              <div className="font-medium text-sm text-blue-600 dark:text-blue-400 mb-1">{formatDate(event.time)}</div>
               <div className={`${
                 event.type === 1 
                   ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700' 
                   : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
-              } p-5 rounded-lg shadow-sm border`}>
+              } p-2 rounded-lg shadow-sm border ${event.contentCN && hasMultipleLines(event.contentCN) ? 'cursor-pointer' : ''}`}
+              onClick={() => event.contentCN && hasMultipleLines(event.contentCN) && toggleEventExpansion(String(event.eventID))}>
                 {event.contentCN && (
                   <div className={`text-sm ${
                     event.type === 1 
                       ? 'text-yellow-800 dark:text-yellow-200' 
                       : 'text-gray-500 dark:text-gray-400'
-                  } mt-2 markdown-content`}>
-                    <ReactMarkdown components={{ a: CustomLink }}>{event.contentCN}</ReactMarkdown>
+                  } markdown-content flex items-start gap-2`}>
+                    <div className="flex-1">
+                      <ReactMarkdown components={{ a: CustomLink }}>
+                        {expandedEvents.has(String(event.eventID)) ? event.contentCN : getFirstLine(event.contentCN)}
+                      </ReactMarkdown>
+                    </div>
+                    {hasMultipleLines(event.contentCN) && (
+                      <ExpandArrow isExpanded={expandedEvents.has(String(event.eventID))} />
+                    )}
                   </div>
                 )}
               </div>

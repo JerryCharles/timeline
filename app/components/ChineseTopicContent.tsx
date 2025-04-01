@@ -96,14 +96,16 @@ export default function ChineseTopicContent({ topic, events, locale = 'zh-TW' }:
       
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden mb-4">
         {topic.image && (
-          <div className="w-full h-64 md:h-96 relative mb-4">
-            <Image 
-              src={topic.image} 
-              alt={topic.titleCN || topic.title}
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-            />
+          <div className="max-w-4xl mx-auto">
+            <div className="w-full aspect-video relative mb-4 max-h-[480px]">
+              <Image 
+                src={topic.image} 
+                alt={topic.titleCN || topic.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            </div>
           </div>
         )}
         

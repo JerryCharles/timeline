@@ -103,14 +103,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 }
 
-export async function generateStaticParams() {
-  const { topics } = await getTopics();
-  
-  return topics.map((topic) => ({
-    id: topic.topicID.toString(),
-  }));
-}
-
 export default async function EnglishTopicPage({ params }: { params: { id: string } }) {
   // Convert id to number since the API expects a number
   const topicID = parseInt(params.id, 10);

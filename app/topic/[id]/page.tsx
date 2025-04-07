@@ -1,6 +1,9 @@
 import { getTopics, getTopicEvents } from '../../services/api';
 import TopicContent from '../../components/TopicContent';
 
+// Disable caching for this page to always get fresh data
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const { topics } = await getTopics();
   

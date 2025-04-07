@@ -3,6 +3,9 @@ import ChineseTopicContent from '../../../components/ChineseTopicContent';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+// Disable caching for this page to always get fresh data
+export const revalidate = 0;
+
 // Generate dynamic metadata based on topic data
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const topicID = parseInt(params.id, 10);

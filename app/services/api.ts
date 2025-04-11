@@ -90,6 +90,9 @@ export async function getTopics(page: number = 1, pageSize: number = 10): Promis
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
     },
     body: JSON.stringify({
       methodName: 'getTopicInfos',
@@ -98,6 +101,9 @@ export async function getTopics(page: number = 1, pageSize: number = 10): Promis
         pageSize,
       },
     }),
+    // Ensure fetch doesn't use cached responses
+    cache: 'no-store',
+    next: { revalidate: 0 },
   });
 
   if (!response.ok) {
@@ -124,6 +130,9 @@ export async function getTopicEvents(topicID: number): Promise<{ topic: Topic; e
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
     },
     body: JSON.stringify({
       methodName: 'getEventInfos',
@@ -133,6 +142,9 @@ export async function getTopicEvents(topicID: number): Promise<{ topic: Topic; e
         pageSize: 300,
       },
     }),
+    // Ensure fetch doesn't use cached responses
+    cache: 'no-store',
+    next: { revalidate: 0 },
   });
 
   if (!response.ok) {

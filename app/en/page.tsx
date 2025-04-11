@@ -3,6 +3,9 @@ import Navbar from '../components/Navbar';
 import TopicCard from '../components/TopicCard';
 import Pagination from '../components/Pagination';
 
+// Disable caching for this page to always get fresh data
+export const revalidate = 0;
+
 export default async function EnglishHome({
   searchParams,
 }: {

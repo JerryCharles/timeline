@@ -1,6 +1,6 @@
 {
-  "name": "3 Journeys Ahead",
-  "short_name": "3ja.com",
+  "name": "Timeline",
+  "short_name": "Timeline",
   "description": "Browse topics and events in a timeline format",
   "start_url": "/",
   "display": "standalone",

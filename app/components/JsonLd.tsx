@@ -2,14 +2,14 @@ export default function JsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: '3 Journeys Ahead',
-    url: 'https://3ja.com',
+    name: 'Timeline',
+    url: 'https://tl.3ja.com',
     description: 'Browse topics and events in a timeline format',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://3ja.com/search?q={search_term_string}'
+        urlTemplate: 'https://tl.3ja.com/search?q={search_term_string}'
       },
       'query-input': 'required name=search_term_string'
     }

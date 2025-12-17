@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Replace with your actual domain
-  const baseUrl = 'https://3ja.com';
+  const baseUrl = 'https://tl.3ja.com';
   
   // Define your static routes
   const staticRoutes = [

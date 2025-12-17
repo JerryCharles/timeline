@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const { topic, events } = await getTopicEvents(topicID);
     
     // Base URL
-    const baseUrl = 'https://3ja.com';
+    const baseUrl = 'https://tl.3ja.com';
 
     // Format the date for schema
     const publishDate = new Date(topic.time * 1000).toISOString();
@@ -25,19 +25,19 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const articleTags = [...(topic.keywordsCN || [])];
     
     return {
-      title: `${topic.titleCN} | 3ja.com`,
+      title: `${topic.titleCN} | Timeline`,
       description: topic.summaryCN,
       keywords: [...articleTags, topic.titleCN, '時間軸', '事件', '歷史'],
       openGraph: {
-        title: `${topic.titleCN} | 3ja.com`,
+        title: `${topic.titleCN} | Timeline`,
         description: topic.summaryCN,
         url: `${baseUrl}/zh-TW/topic/${params.id}`,
-        siteName: '3ja.com',
+        siteName: 'Timeline',
         locale: 'zh_TW',
         type: 'article',
         publishedTime: publishDate,
         modifiedTime: modifyDate,
-        authors: ['3ja.com'],
+        authors: ['Timeline'],
         tags: articleTags,
         images: [
           {
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${topic.titleCN} | 3ja.com`,
+        title: `${topic.titleCN} | Timeline`,
         description: topic.summaryCN,
         images: [topic.image || `${baseUrl}/twitter-image-zh.jpg`],
         site: '@3ja_com',
@@ -74,12 +74,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           dateModified: modifyDate,
           author: [{
             '@type': 'Organization',
-            name: '3ja.com',
+            name: 'Timeline',
             url: baseUrl
           }],
           publisher: {
             '@type': 'Organization',
-            name: '3ja.com',
+            name: 'Timeline',
             logo: {
               '@type': 'ImageObject',
               url: `${baseUrl}/logo.png`
@@ -99,7 +99,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   } catch (error) {
     return {
-      title: '主題不存在 | 3ja.com',
+      title: '主題不存在 | Timeline',
       description: '找不到請求的主題。',
     };
   }

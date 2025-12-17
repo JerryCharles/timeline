@@ -26,7 +26,7 @@ export default function Navbar() {
             <Image src="/logo.png" alt="Timeline Logo" width={60} height={60} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-indigo-500 dark:text-pink-400">{isEnglish ? '3 Journeys Ahead' : '3ja.com'}</h1>
+            <h1 className="text-xl font-bold text-indigo-500 dark:text-pink-400">Timeline</h1>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{isEnglish ? 'Timelines Made Simple' : '時間線一目了然'}</p>
           </div>
         </Link>

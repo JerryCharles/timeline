@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const { topic, events } = await getTopicEvents(topicID);
     
     // Base URL
-    const baseUrl = 'https://3ja.com';
+    const baseUrl = 'https://tl.3ja.com';
 
     // Format the date for schema
     const publishDate = new Date(topic.time * 1000).toISOString();
@@ -25,19 +25,19 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const articleTags = [...(topic.keywords || [])];
     
     return {
-      title: `${topic.title} | 3ja.com`,
+      title: `${topic.title} | Timeline`,
       description: topic.summary,
       keywords: [...articleTags, topic.title, 'timeline', 'events', 'history'],
       openGraph: {
-        title: `${topic.title} | 3ja.com`,
+        title: `${topic.title} | Timeline`,
         description: topic.summary,
         url: `${baseUrl}/en/topic/${params.id}`,
-        siteName: '3ja.com',
+        siteName: 'Timeline',
         locale: 'en_US',
         type: 'article',
         publishedTime: publishDate,
         modifiedTime: modifyDate,
-        authors: ['3ja.com'],
+        authors: ['Timeline'],
         tags: articleTags,
         images: [
           {
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${topic.title} | 3 Journeys Ahead`,
+        title: `${topic.title} | Timeline`,
         description: topic.summary,
         images: [topic.image || `${baseUrl}/twitter-image-en.jpg`],
         site: '@3ja_com',
@@ -74,12 +74,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           dateModified: modifyDate,
           author: [{
             '@type': 'Organization',
-            name: '3ja.com',
+            name: 'Timeline',
             url: baseUrl
           }],
           publisher: {
             '@type': 'Organization',
-            name: '3ja.com',
+            name: 'Timeline',
             logo: {
               '@type': 'ImageObject',
               url: `${baseUrl}/logo.png`
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   } catch (error) {
     return {
-      title: 'Topic Not Found | 3 Journeys Ahead',
+      title: 'Topic Not Found | Timeline',
       description: 'The requested topic could not be found.',
     };
   }
